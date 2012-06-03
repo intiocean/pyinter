@@ -30,3 +30,4 @@ Todos
 - How to install
 - sphinx documentation
 - add to pypi
+- look for enhancements to the code (timing, optimisation, ...)
