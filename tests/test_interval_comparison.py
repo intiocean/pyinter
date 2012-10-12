@@ -129,52 +129,52 @@ def test_le_raises():
 def test_contains():
     small = i.closed(1, 5)
     medium = i.closedopen(3, 10)
-    assert small._lower_value in small
+    assert small.lower_value in small
     assert small._upper_value in small
-    assert medium._lower_value in medium
+    assert medium.lower_value in medium
     assert medium._upper_value not in medium
 
 
 def test_not_contains():
     small, medium = get_intervals()[:2]
-    assert small._lower_value not in small
+    assert small.lower_value not in small
     assert small._upper_value not in small
-    assert medium._lower_value not in medium
+    assert medium.lower_value not in medium
     assert medium._upper_value not in medium
 
 
-def test_overlapps_open():
+def test_overlaps_open():
     one = i.open(1, 5)
     two = i.open(3, 10)
-    assert one.overlapps(two)
-    assert two.overlapps(one)
-    assert one.overlapps(one)
-    assert two.overlapps(two)
+    assert one.overlaps(two)
+    assert two.overlaps(one)
+    assert one.overlaps(one)
+    assert two.overlaps(two)
 
 
-def test_overlapps_false():
+def test_overlaps_false():
     one = i.open(1, 5)
     two = i.open(7, 12)
-    assert not one.overlapps(two)
-    assert not two.overlapps(one)
-    assert one.overlapps(one)
-    assert two.overlapps(two)
+    assert not one.overlaps(two)
+    assert not two.overlaps(one)
+    assert one.overlaps(one)
+    assert two.overlaps(two)
 
 
-def test_overlapps_corner_case_open():
+def test_overlaps_corner_case_open():
     one = i.open(1, 5)
     two = i.open(5, 10)
-    assert not one.overlapps(two)
-    assert not two.overlapps(one)
-    assert one.overlapps(one)
-    assert two.overlapps(two)
+    assert not one.overlaps(two)
+    assert not two.overlaps(one)
+    assert one.overlaps(one)
+    assert two.overlaps(two)
 
 
-def test_overlapps_corner_case_closed():
+def test_overlaps_corner_case_closed():
     one = i.closed(1, 5)
     two = i.closed(5, 10)
-    assert one.overlapps(two)
-    assert two.overlapps(one)
-    assert one.overlapps(one)
-    assert two.overlapps(two)
+    assert one.overlaps(two)
+    assert two.overlaps(one)
+    assert one.overlaps(one)
+    assert two.overlaps(two)
     
