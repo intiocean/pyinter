@@ -1,24 +1,38 @@
-.. include:: ../../README.md
+`Pyinter`
+=========
+.. automodule:: pyinter.__init__
 
-Interval
-========
+`Interval` Class
+----------------
+
 .. autoclass:: pyinter.Interval
    :members:
+   :undoc-members:
+   :show-inheritance:
 
-Helper methods
---------------
+`Interval` Construction helpers
+...............................
 .. automodule:: pyinter.interval
    :members:
    :exclude-members: Interval
-   
-Interval Set
-============
+   :undoc-members:
+   :show-inheritance:
+
+
+:mod:`interval_set` Module
+--------------------------
+
 .. automodule:: pyinter.interval_set
-   :members:
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+
 
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

@@ -1,4 +1,8 @@
-from .interval import Interval, open, closed, openclosed, closedopen
-from .interval_set import IntervalSet
+'''
+Pyinter is a python interval library which deals with interval arithmetic and sets of intervals (discontinous ranges).
+'''
+
+from pyinter.interval import Interval, open, closed, openclosed, closedopen
+from pyinter.interval_set import IntervalSet
 
 __all__ = [Interval, open, closed, openclosed, closedopen, IntervalSet]

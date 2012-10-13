@@ -4,7 +4,7 @@ import operator
 def open(lower_value, upper_value):
     '''Helper function to construct an interval object with open lower and upper.
 
-    Example:
+    For example:
 
     >>> open(100.2, 800.9)
     (100.2, 800.9)
@@ -15,7 +15,7 @@ def open(lower_value, upper_value):
 def closed(lower_value, upper_value):
     '''Helper function to construct an interval object with closed lower and upper.
 
-    Example:
+    For example:
 
     >>> closed(100.2, 800.9)
     [100.2, 800.9]
@@ -26,7 +26,7 @@ def closed(lower_value, upper_value):
 def openclosed(lower_value, upper_value):
     '''Helper function to construct an interval object with a open lower and closed upper.
 
-    Example:
+    For example:
 
     >>> openclosed(100.2, 800.9)
     (100.2, 800.9]
@@ -37,7 +37,7 @@ def openclosed(lower_value, upper_value):
 def closedopen(lower_value, upper_value):
     '''Helper function to construct an interval object with a closed lower and open upper.
 
-    Example:
+    For example:
 
     >>> closedopen(100.2, 800.9)
     [100.2, 800.9)
@@ -50,8 +50,7 @@ class Interval:
     
     *Note: comparison is performed solely on the lower value*
     
-    Examples
-    --------
+    **Examples**
     An open interval:
 
     >>> Interval(Interval.OPEN, 100.2, 800.9, Interval.OPEN)
@@ -77,11 +76,11 @@ class Interval:
     
     
     _lower = None
-    lower_value = None
+    _lower_value = None
     _upper_value = None
     _upper = None
     
-    lower_value = property(fget=lambda self: self.lower_value, doc='The intervals lower value')
+    lower_value = property(fget=lambda self: self._lower_value, doc='The intervals lower value')
     upper_value = property(fget=lambda self: self._upper_value, doc='The intervals upper value')
     
     def __init__(self, lower, lower_value, upper_value, upper):
@@ -89,14 +88,14 @@ class Interval:
         if lower_value > upper_value:
             raise ValueError('lower_value({lower}) must be smaller than upper_value({upper})'.format(lower=lower_value, upper=upper_value))
         self._lower = lower
-        self.lower_value = lower_value
+        self._lower_value = lower_value
         self._upper_value = upper_value
         self._upper = upper
 
     def __repr__(self):
         lower_string = '(' if self._lower == self.OPEN else '['
         upper_string = ')' if self._upper == self.OPEN else ']'
-        return '{l}{lv}, {uv}{u}'.format(l=lower_string, lv=self.lower_value, uv=self._upper_value, u=upper_string)
+        return '{l}{lv}, {uv}{u}'.format(l=lower_string, lv=self.lower_value, uv=self.upper_value, u=upper_string)
 
     def __lt__(self, other):
         if hasattr(other, 'lower_value'):
@@ -199,5 +198,5 @@ class Interval:
             new_lower, new_upper = self._get_new_lower_upper(other, self.union)
             return Interval(new_lower, newlower_value, new_upper_value, new_upper)
         else:
-            from .interval_set import IntervalSet
+            from pyinter.interval_set import IntervalSet
             return IntervalSet((self, other))
