@@ -66,7 +66,7 @@ class Interval:
     >>> Interval(Interval.OPEN, 100.2, 800.9, Interval.CLOSED)
     (100.2, 800.9]
     
-    An closed-open interval:
+    A closed-open interval:
 
     >>> Interval(Interval.CLOSED, 100.2, 800.9, Interval.OPEN)
     [100.2, 800.9)
