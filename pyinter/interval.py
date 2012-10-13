@@ -47,7 +47,7 @@ def closedopen(lower_value, upper_value):
 
 class Interval:
     '''An interval class with methods associated with mathematical intervals. This class can deal with any comparible objects. 
-    
+
     *Note: comparison is performed solely on the lower value*
     
     **Examples**
@@ -80,11 +80,11 @@ class Interval:
     _upper_value = None
     _upper = None
     
-    lower_value = property(fget=lambda self: self._lower_value, doc='The intervals lower value')
-    upper_value = property(fget=lambda self: self._upper_value, doc='The intervals upper value')
+    lower_value = property(fget=lambda self: self._lower_value, doc='This intervals lower value')
+    upper_value = property(fget=lambda self: self._upper_value, doc='This intervals upper value')
     
     def __init__(self, lower, lower_value, upper_value, upper):
-        '''Create a new Interval object, lower and upper should be one of Interval.OPEN or Interval.CLOSED'''
+        '''Create a new :class:`~pyinter.Interval` object, lower and upper should be one of :const:`~pyinter.Interval.OPEN` or :const:`~pyinter.Interval.CLOSED`'''
         if lower_value > upper_value:
             raise ValueError('lower_value({lower}) must be smaller than upper_value({upper})'.format(lower=lower_value, upper=upper_value))
         self._lower = lower
@@ -183,6 +183,7 @@ class Interval:
         return False        
  
     def intersect(self, other):
+        '''Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`'''
         if self.overlaps(other):
             newlower_value = max(self.lower_value, other.lower_value)
             new_upper_value = min(self._upper_value, other._upper_value)
@@ -192,6 +193,9 @@ class Interval:
             return None
 
     def union(self, other):
+        '''Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the union of this :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`.
+
+        If the two intervals are overlaping then this will return an :class:`~pyinter.Interval`, otherwise this returns an :class:`~pyinter.IntervalSet`.'''
         if self.overlaps(other):
             newlower_value = min(self.lower_value, other.lower_value)
             new_upper_value = max(self._upper_value, other._upper_value)
