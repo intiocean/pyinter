@@ -13,6 +13,10 @@ The why?
 --------
 *Warning: the following may or may not be rather geeky, you have been warned!* The inital reason I started developement of an interval package in python was that I couldn't find one which dealt with open and closed intervals and I needed one to play around with some ideas I was having regarding dependency resolution of python packages.
 
+The help
+--------
+Documentation is available here: http://pyinter.readthedocs.org
+
 Done
 ----
 - interval objects which can be
@@ -23,11 +27,11 @@ Done
     - comparison
     - construction
     - intersection and union
+- ~~sphinx documentation.~~ available here: http://pyinter.readthedocs.org
 
 Todos
 -----
 - code and tests for IntervalSet
 - How to install
-- sphinx documentation
 - add to pypi
 - look for enhancements to the code (timing, optimisation, ...)
