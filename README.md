@@ -37,3 +37,4 @@ Todos
 - look for enhancements to the code (timing, optimisation, ...)
 - setup continous integration on travis ci
 - make the project a homepage
+- check pylint

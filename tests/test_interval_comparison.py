@@ -136,23 +136,36 @@ def test_contains():
 
 
 def test_contains_self_closed():
-    small = i.closed(1, 5)
+    small = i.closed(3, 5)
+    medium = i.closedopen(3, 10)
     assert small in small
+    assert small in medium
+    assert medium not in small
 
 
 def test_contains_self_open():
     small = i.open(1, 5)
+    medium = i.open(3, 10)
     assert small in small
+    assert small not in medium
+    assert medium not in small
+    assert medium in medium
 
 
 def test_contains_self_closed_open():
-    small = i.closed_open(1, 5)
+    small = i.closedopen(1, 5)
+    medium = i.closed(7, 10)
     assert small in small
+    assert small not in medium
+    assert medium not in small
 
 
 def test_contains_self_open_closed():
-    small = i.open_closed(1, 5)
+    small = i.openclosed(1, 5)
+    medium = i.openclosed(1, 10)
     assert small in small
+    assert medium not in small
+    assert small in medium
 
 
 def test_not_contains():

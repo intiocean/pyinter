@@ -46,7 +46,8 @@ def closedopen(lower_value, upper_value):
 
 
 class Interval:
-    '''An interval class with methods associated with mathematical intervals. This class can deal with any comparible objects. 
+    '''An interval class with methods associated with mathematical intervals.
+    This class can deal with any comparible objects. 
 
     *Note: comparison is performed solely on the lower value*
     
@@ -84,9 +85,11 @@ class Interval:
     upper_value = property(fget=lambda self: self._upper_value, doc='This intervals upper value')
     
     def __init__(self, lower, lower_value, upper_value, upper):
-        '''Create a new :class:`~pyinter.Interval` object, lower and upper should be one of :const:`~pyinter.Interval.OPEN` or :const:`~pyinter.Interval.CLOSED`'''
+        '''Create a new :class:`~pyinter.Interval` object, lower and upper should be one of
+        :const:`~pyinter.Interval.OPEN` or :const:`~pyinter.Interval.CLOSED`'''
         if lower_value > upper_value:
-            raise ValueError('lower_value({lower}) must be smaller than upper_value({upper})'.format(lower=lower_value, upper=upper_value))
+            raise ValueError('lower_value({lower}) must be smaller than upper_value({upper})'.format(lower=lower_value,
+                                                                                                     upper=upper_value))
         self._lower = lower
         self._lower_value = lower_value
         self._upper_value = upper_value
@@ -110,8 +113,10 @@ class Interval:
             raise NotImplementedError
     
     def __eq__(self, other):
-        if hasattr(other, '_lower') and hasattr(other, 'lower_value') and hasattr(other, '_upper_value') and hasattr(other, '_upper'):
-            return self._lower == other._lower and self.lower_value == other.lower_value and self._upper_value == other._upper_value and self._upper == other._upper
+        if hasattr(other, '_lower') and hasattr(other, 'lower_value') \
+        and hasattr(other, '_upper_value') and hasattr(other, '_upper'):
+            return self._lower == other._lower and self.lower_value == other.lower_value \
+            and self._upper_value == other._upper_value and self._upper == other._upper
         else:
             raise NotImplementedError
     
@@ -139,10 +144,28 @@ class Interval:
     def __or__(self, other):
         return self.union(self, other)
 
-    def __contains__(self, item):
+    def _contains_value(self, value):
+        '''Helper function for __contains__ to check a single value is contained within the interval'''
         g = operator.gt if self._lower is self.OPEN else operator.ge
         l = operator.lt if self._upper is self.OPEN else operator.le
-        return g(item, self.lower_value) and l(item, self._upper_value)
+        return g(value, self.lower_value) and l(value, self._upper_value)
+        
+
+    def __contains__(self, item):
+        if isinstance(item, Interval):
+            lower_in = False
+            upper_in = False
+            if self._contains_value(item._lower_value):
+                lower_in = True
+            elif self._lower == item._lower and self._lower_value == item._lower_value:
+                lower_in = True
+            if self._contains_value(item._upper_value):
+                upper_in = True
+            elif self._upper == item._upper and self._upper_value == item._upper_value:
+                upper_in = True
+            return lower_in and upper_in
+        else:
+            return self._contains_value(item)
 
     def _get_new_lower_upper(self, other, operator):
         if operator == self.intersect:
@@ -183,7 +206,8 @@ class Interval:
         return False        
  
     def intersect(self, other):
-        '''Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`'''
+        '''Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval`
+        with the other :class:`~pyinter.Interval`'''
         if self.overlaps(other):
             newlower_value = max(self.lower_value, other.lower_value)
             new_upper_value = min(self._upper_value, other._upper_value)
@@ -193,9 +217,11 @@ class Interval:
             return None
 
     def union(self, other):
-        '''Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the union of this :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`.
+        '''Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the union of this
+        :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`.
 
-        If the two intervals are overlaping then this will return an :class:`~pyinter.Interval`, otherwise this returns an :class:`~pyinter.IntervalSet`.'''
+        If the two intervals are overlaping then this will return an :class:`~pyinter.Interval`,
+        otherwise this returns an :class:`~pyinter.IntervalSet`.'''
         if self.overlaps(other):
             newlower_value = min(self.lower_value, other.lower_value)
             new_upper_value = max(self._upper_value, other._upper_value)
