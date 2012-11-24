@@ -33,15 +33,14 @@ Done
 - tests on interval set
 	- construction
 	- comparison
-
+	- intersection and union
 - sphinx documentation available here: http://pyinter.readthedocs.org
 
 Todos
 -----
-- further tests for IntervalSet
 - How to install
 - add to pypi
-- look for enhancements to the code (timing, optimisation, ...)
+- look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
 - setup continous integration on travis ci
 - make the project a homepage
 - check pylint
