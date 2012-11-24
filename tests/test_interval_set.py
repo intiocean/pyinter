@@ -38,6 +38,8 @@ def test_values_in():
     assert 7 in ivset
     assert 8 in ivset
     assert 10.0001 not in ivset
+    assert one in ivset
+    assert two in ivset
 
 
 def test_intersection():

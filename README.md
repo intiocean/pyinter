@@ -23,15 +23,22 @@ Done
     - unioned
     - intersected
     - easily constructed using helper functions: *open, closed, openclosed and closedopen*
+- interval sets which can be
+    - unioned
+    - intersected
 - tests on interval
-    - comparison
     - construction
+    - comparison
     - intersection and union
+- tests on interval set
+	- construction
+	- comparison
+
 - sphinx documentation available here: http://pyinter.readthedocs.org
 
 Todos
 -----
-- code and tests for IntervalSet
+- further tests for IntervalSet
 - How to install
 - add to pypi
 - look for enhancements to the code (timing, optimisation, ...)
