@@ -135,6 +135,26 @@ def test_contains():
     assert medium._upper_value not in medium
 
 
+def test_contains_self_closed():
+    small = i.closed(1, 5)
+    assert small in small
+
+
+def test_contains_self_open():
+    small = i.open(1, 5)
+    assert small in small
+
+
+def test_contains_self_closed_open():
+    small = i.closed_open(1, 5)
+    assert small in small
+
+
+def test_contains_self_open_closed():
+    small = i.open_closed(1, 5)
+    assert small in small
+
+
 def test_not_contains():
     small, medium = get_intervals()[:2]
     assert small.lower_value not in small

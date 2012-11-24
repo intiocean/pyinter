@@ -27,7 +27,7 @@ Done
     - comparison
     - construction
     - intersection and union
-- ~~sphinx documentation.~~ available here: http://pyinter.readthedocs.org
+- sphinx documentation available here: http://pyinter.readthedocs.org
 
 Todos
 -----
@@ -35,3 +35,5 @@ Todos
 - How to install
 - add to pypi
 - look for enhancements to the code (timing, optimisation, ...)
+- setup continous integration on travis ci
+- make the project a homepage

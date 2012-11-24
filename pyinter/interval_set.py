@@ -19,7 +19,7 @@ class IntervalSet:
         if hasattr(other, '_data'):
             return self._data == other._data
         else:
-            raise NotImplementedError
+            raise NotImplementedError  # This will allow other a chance to check for equality
 
     def __contains__(self, item):
         for interval in self._data:
@@ -31,7 +31,9 @@ class IntervalSet:
         return self._data.__iter__()
     
     def _add(self, other):
-        '''Add a interval to the underlying IntervalSet data store. This does not perform any tests as we assume that any requirements have already been checked and that this function is being called by an internal function such as union or intersection.'''
+        '''Add a interval to the underlying IntervalSet data store. This does not perform any tests as we assume that
+        any requirements have already been checked and that this function is being called by an internal function such
+        as union or intersection.'''
         if isinstance(other, IntervalSet):
             for interval in other:
                 self._data.add(interval)
@@ -39,10 +41,8 @@ class IntervalSet:
             self._data.add(interval)
 
     def intersection(self, other):
-        '''Returns a new IntervalSet which represents the intersection of each of the intervals in this IntervalSet with each of the intervals in the other IntervalSet.
-        
-        **Examples**
-        >>> abc
+        '''Returns a new IntervalSet which represents the intersection of each of the intervals in this IntervalSet
+        with each of the intervals in the other IntervalSet.
         '''
         result = IntervalSet()
         for other_inter in other:
@@ -50,7 +50,8 @@ class IntervalSet:
                 result._add(other_inter.intersect(interval))
 
     def union(self, other):
-        '''Returns a new IntervalSet which represents the union of each of the intervals in this IntervalSet with each of the intervals in the other IntervalSet'''
+        '''Returns a new IntervalSet which represents the union of each of the intervals in this IntervalSet with each
+        of the intervals in the other IntervalSet'''
         result = IntervalSet()
         for other_inter in other:
             for interval in self:
