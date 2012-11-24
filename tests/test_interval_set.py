@@ -42,9 +42,61 @@ def test_values_in():
     assert two in ivset
 
 
-def test_intersection():
-    pass
+def test_intersection_of_disjoint_is_empty():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    second = IntervalSet((i.open(20,21), i.closed(22,23)))
+    expected = IntervalSet()
+    result = first.intersection(second)
+    assert result == expected
 
 
-def test_union():
-    pass
+def test_intersection_of_overlapping():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    second = IntervalSet((i.open(8, 21), i.closed(22,23)))
+    expected = IntervalSet((i.openclosed(8, 10), ))
+    result = first.intersection(second)
+    assert result == expected
+
+
+def test_intersection_of_exactly_overlapping():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    second = IntervalSet((i.open(1, 5), i.closed(7,23)))
+    expected = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    result = first.intersection(second)
+    assert result == expected
+
+
+def test_intersection_of_almost_overlapping():
+    first = IntervalSet((i.open(1, 5), i.closedopen(7, 10)))
+    second = IntervalSet((i.open(1, 5), i.closed(7,23)))
+    expected = IntervalSet((i.open(1, 5), i.closedopen(7, 10)))
+    result = first.intersection(second)
+    assert result == expected
+
+
+def test_intersection_of_equal():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    result = first.intersection(first)
+    assert result == first
+
+
+def test_union_of_overlapping():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    second = IntervalSet((i.open(8, 21), i.closed(22,23)))
+    expected = IntervalSet((i.open(1, 5), i.closedopen(7, 21), i.closed(22, 23)))
+    result = first.union(second)
+    assert result == expected
+
+
+def test_union_of_disjoint():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    second = IntervalSet((i.open(12, 21), i.closed(22,23)))
+    expected = IntervalSet((i.open(1, 5), i.closed(7, 10), i.open(12, 21), i.closed(22, 23)))
+    result = first.union(second)
+    assert result == expected
+
+
+def test_union_of_equal():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    result = first.union(first)
+    assert result == first

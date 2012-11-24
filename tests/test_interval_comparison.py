@@ -135,6 +135,12 @@ def test_contains():
     assert medium._upper_value not in medium
 
 
+def test_contains_fully_overlapping():
+    small = i.closed(7, 10)
+    medium = i.closedopen(7, 21)
+    assert small in medium
+
+
 def test_contains_self_closed():
     small = i.closed(3, 5)
     medium = i.closedopen(3, 10)

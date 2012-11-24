@@ -27,7 +27,7 @@ class IntervalSet:
                 return True
         return False
     
-    def __iter__():
+    def __iter__(self):
         return self._data.__iter__()
     
     def _add(self, other):
@@ -36,9 +36,15 @@ class IntervalSet:
         as union or intersection.'''
         if isinstance(other, IntervalSet):
             for interval in other:
-                self._data.add(interval)
+                self._add(interval)
         else:
-            self._data.add(interval)
+
+            if len([interval for interval in self if other in interval]) > 0:  # if other is already represented
+                return
+            # remove any intevals which are fully represented by the interval we are adding
+            to_remove = [interval for interval in self if interval in other]
+            self._data.difference_update(to_remove)
+            self._data.add(other)
 
     def intersection(self, other):
         '''Returns a new IntervalSet which represents the intersection of each of the intervals in this IntervalSet
@@ -47,7 +53,10 @@ class IntervalSet:
         result = IntervalSet()
         for other_inter in other:
             for interval in self:
-                result._add(other_inter.intersect(interval))
+                this_intervals_intersection = other_inter.intersect(interval)
+                if this_intervals_intersection is not None:
+                    result._add(this_intervals_intersection)
+        return result
 
     def union(self, other):
         '''Returns a new IntervalSet which represents the union of each of the intervals in this IntervalSet with each
@@ -56,4 +65,5 @@ class IntervalSet:
         for other_inter in other:
             for interval in self:
                 result._add(other_inter.union(interval))
+        return result
                 
