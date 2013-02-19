@@ -44,3 +44,4 @@ Todos
 - setup continous integration on travis ci
 - make the project a homepage
 - check pylint
+- Create some concrete example use cases - daterange and version range
