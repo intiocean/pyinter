@@ -3,7 +3,7 @@ pyinter
 
 The what?
 ---------
-A interval package for Python which deals with interval arithmetic and sets of intervals (_discontinuous ranges_). **It is currently in developement and not yet fully code complete or fully tested.**
+An interval package for Python which deals with interval arithmetic and sets of intervals *(discontinuous ranges)*. **It is currently in developement and not yet fully code complete or fully tested.**
 
 The how?
 --------
