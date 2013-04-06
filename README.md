@@ -35,7 +35,7 @@ Done
 	- comparison
 	- intersection and union
 - sphinx documentation available here: http://pyinter.readthedocs.org
-- setup continous integration on travis ci
+- continous integration on travis ci: https://travis-ci.org/intiocean/pyinter
 
 Todos
 -----
