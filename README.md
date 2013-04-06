@@ -1,4 +1,4 @@
-pyinter
+pyinter  [![Build Status](https://travis-ci.org/intiocean/pyinter.png)](https://travis-ci.org/intiocean/pyinter)
 =======
 
 The what?
