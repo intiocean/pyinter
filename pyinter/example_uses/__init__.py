@@ -1,3 +1,3 @@
-from daterange.daterange import daterange
+from daterange import daterange
 
 __all__ = [daterange]
