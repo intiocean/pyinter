@@ -35,15 +35,16 @@ Done
 	- comparison
 	- intersection and union
 - sphinx documentation available here: http://pyinter.readthedocs.org
+- setup continous integration on travis ci
 
 Todos
 -----
 - How to install
 - add to pypi
 - look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
-- setup continous integration on travis ci
 - make the project a homepage
 - check pylint
 - Create some concrete example use cases - daterange and version range
 - ensure all functions have docstrings describing the inputs and outputs
 - make sure there are no tabs! (whops)
+- add a build for python 3.3 to travis ci and get it passing (there is some kind of import error)
