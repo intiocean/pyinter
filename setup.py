@@ -11,9 +11,9 @@ Another Python package with deals with interval arithmetic, this one hopes to be
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='interval range discontinous-range union intersection',
       author='Inti Ocean',
-      author_email='',
+      author_email='intiocean@gmail.com',
       url='intiocean.com',
-      license='',
+      license='MIT',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       zip_safe=True,
