@@ -3,7 +3,7 @@ import sys, os
 
 version = '0.1'
 
-with os.open('README.md', 'r') as f:
+with open('README.md', 'r') as f:
       long_desc = f.readlines()
 
 setup(name='pyinter',
