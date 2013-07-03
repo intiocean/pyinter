@@ -37,15 +37,15 @@ Done
 - sphinx documentation available here: http://pyinter.readthedocs.org
 - continous integration on travis ci: https://travis-ci.org/intiocean/pyinter
 - Example use: daterange
+- add to pypi
 
 Todos
 -----
-- How to install
-- add to pypi
-- look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
+- How to install added to docs
 - make the project a homepage
 - check pylint
 - Create some concrete example use cases (version range)
 - ensure all functions have docstrings describing the inputs and outputs
 - make sure there are no tabs! (whops)
 - add a build for python 3.3 to travis ci and get it passing (there is some kind of import error)
+- look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
