@@ -31,11 +31,12 @@ Done
     - comparison
     - intersection and union
 - tests on interval set
-	- construction
-	- comparison
-	- intersection and union
+    - construction
+    - comparison
+    - intersection and union
 - sphinx documentation available here: http://pyinter.readthedocs.org
 - continous integration on travis ci: https://travis-ci.org/intiocean/pyinter
+- Example use: daterange
 
 Todos
 -----
@@ -44,7 +45,7 @@ Todos
 - look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
 - make the project a homepage
 - check pylint
-- Create some concrete example use cases - daterange and version range
+- Create some concrete example use cases (version range)
 - ensure all functions have docstrings describing the inputs and outputs
 - make sure there are no tabs! (whops)
 - add a build for python 3.3 to travis ci and get it passing (there is some kind of import error)
