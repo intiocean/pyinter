@@ -8,7 +8,8 @@ setup(name='pyinter',
       description="An interval package which deals with open, closed or half open intervals.",
       long_description="""\
 Another Python package with deals with interval arithmetic, this one hopes to be useful.""",
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      classifiers=['Development Status :: 3 - Alpha',
+                   'License :: OSI Approved :: MIT License'], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='interval range discontinous-range union intersection',
       author='Inti Ocean',
       author_email='intiocean@gmail.com',
