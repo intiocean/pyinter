@@ -39,6 +39,7 @@ Done
 - Example use: daterange
 - add to pypi
 - remove pylint
+- add a build for python 3.3 to travis ci and get it passing (there is some kind of import error)
 
 Todos
 -----
@@ -46,6 +47,4 @@ Todos
 - make the project a homepage
 - Create some concrete example use cases (version range)
 - ensure all functions have docstrings describing the inputs and outputs
-- make sure there are no tabs! (whops)
-- add a build for python 3.3 to travis ci and get it passing (there is some kind of import error)
 - look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
