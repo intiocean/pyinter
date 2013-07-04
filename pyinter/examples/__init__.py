@@ -1,3 +1,3 @@
-from daterange import daterange
+from pyinter.examples.daterange import daterange
 
 __all__ = [daterange]
