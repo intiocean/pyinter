@@ -45,6 +45,6 @@ Todos
 -----
 - How to install added to docs
 - make the project a homepage
-- Create some concrete example use cases (version range)
+- Create a version range as a concrete usable example
 - ensure all functions have docstrings describing the inputs and outputs
 - look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
