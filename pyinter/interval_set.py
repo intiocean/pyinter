@@ -26,10 +26,10 @@ class IntervalSet:
             if item in interval:
                 return True
         return False
-    
+
     def __iter__(self):
         return self._data.__iter__()
-    
+
     def _add(self, other):
         '''Add a interval to the underlying IntervalSet data store. This does not perform any tests as we assume that
         any requirements have already been checked and that this function is being called by an internal function such
@@ -66,4 +66,3 @@ class IntervalSet:
             for interval in self:
                 result._add(other_inter.union(interval))
         return result
-                
