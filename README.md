@@ -38,12 +38,12 @@ Done
 - continous integration on travis ci: https://travis-ci.org/intiocean/pyinter
 - Example use: daterange
 - add to pypi
+- remove pylint
 
 Todos
 -----
 - How to install added to docs
 - make the project a homepage
-- check pylint
 - Create some concrete example use cases (version range)
 - ensure all functions have docstrings describing the inputs and outputs
 - make sure there are no tabs! (whops)
