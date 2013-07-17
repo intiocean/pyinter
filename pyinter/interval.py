@@ -47,26 +47,26 @@ def closedopen(lower_value, upper_value):
 
 class Interval:
     '''An interval class with methods associated with mathematical intervals.
-    This class can deal with any comparible objects. 
+    This class can deal with any comparible objects.
 
     *Note: comparison is performed solely on the lower value*
-    
+
     **Examples**
     An open interval:
 
     >>> Interval(Interval.OPEN, 100.2, 800.9, Interval.OPEN)
     (100.2, 800.9)
-    
+
     A closed interval:
 
     >>> Interval(Interval.CLOSED, 100.2, 800.9, Interval.CLOSED)
     [100.2, 800.9]
-    
+
     An open-closed interval:
 
     >>> Interval(Interval.OPEN, 100.2, 800.9, Interval.CLOSED)
     (100.2, 800.9]
-    
+
     A closed-open interval:
 
     >>> Interval(Interval.CLOSED, 100.2, 800.9, Interval.OPEN)
@@ -74,16 +74,15 @@ class Interval:
     '''
     OPEN = 0
     CLOSED = 1
-    
-    
+
     _lower = None
     _lower_value = None
     _upper_value = None
     _upper = None
-    
+
     lower_value = property(fget=lambda self: self._lower_value, doc='This intervals lower value')
     upper_value = property(fget=lambda self: self._upper_value, doc='This intervals upper value')
-    
+
     def __init__(self, lower, lower_value, upper_value, upper):
         '''Create a new :class:`~pyinter.Interval` object, lower and upper should be one of
         :const:`~pyinter.Interval.OPEN` or :const:`~pyinter.Interval.CLOSED`'''
@@ -105,13 +104,13 @@ class Interval:
             return self.lower_value < other.lower_value
         else:
             raise NotImplementedError
-    
+
     def __le__(self, other):
         if hasattr(other, 'lower_value'):
             return self.lower_value <= other.lower_value
         else:
             raise NotImplementedError
-    
+
     def __eq__(self, other):
         if hasattr(other, '_lower') and hasattr(other, 'lower_value') \
         and hasattr(other, '_upper_value') and hasattr(other, '_upper'):
@@ -119,28 +118,28 @@ class Interval:
             and self._upper_value == other._upper_value and self._upper == other._upper
         else:
             raise NotImplementedError
-    
+
     def __ne__(self, other):
         return not self.__eq__(other)
-    
+
     def __gt__(self, other):
         if hasattr(other, 'lower_value'):
             return self.lower_value > other.lower_value
         else:
             raise NotImplementedError
-    
+
     def __ge__(self, other):
         if hasattr(other, 'lower_value'):
             return self.lower_value >= other.lower_value
         else:
             raise NotImplementedError
-    
+
     def __hash__(self):
         return hash(self.lower_value)
-    
+
     def __and__(self, other):
         return self.intersect(self, other)
-    
+
     def __or__(self, other):
         return self.union(self, other)
 
@@ -149,7 +148,6 @@ class Interval:
         g = operator.gt if self._lower is self.OPEN else operator.ge
         l = operator.lt if self._upper is self.OPEN else operator.le
         return g(value, self.lower_value) and l(value, self._upper_value)
-        
 
     def __contains__(self, item):
         if isinstance(item, Interval):
@@ -175,7 +173,7 @@ class Interval:
                 new_lower = other._lower
             else:
                 new_lower = self._lower
-            
+
             if self._upper_value == other._upper_value:
                 new_upper = self._upper and other._upper
             elif self._upper_value < other._upper_value:
@@ -189,7 +187,7 @@ class Interval:
                 new_lower = self._lower
             else:
                 new_lower = other._lower
-            
+
             if self._upper_value == other._upper_value:
                 new_upper = self._upper or other._upper
             elif self._upper_value < other._upper_value:
@@ -203,8 +201,8 @@ class Interval:
         if self.lower_value in other or self._upper_value in other or \
         other.lower_value in self or other._upper_value in self or self == other:
             return True
-        return False        
- 
+        return False
+
     def intersect(self, other):
         '''Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval`
         with the other :class:`~pyinter.Interval`'''
