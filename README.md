@@ -48,3 +48,13 @@ Todos
 - Create a version range as a concrete usable example
 - ensure all functions have docstrings describing the inputs and outputs
 - Convert this readme to RST so that it renders properly on pypi
+
+Cangelog
+========
+v 0.1.1
+-------
+Adding Manifest file to fix the pypi release
+
+v 0.1
+-----
+Initial release
