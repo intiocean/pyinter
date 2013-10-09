@@ -47,4 +47,4 @@ Todos
 - make the project a homepage
 - Create a version range as a concrete usable example
 - ensure all functions have docstrings describing the inputs and outputs
-- look for enhancements to the code (timing, optimisation, tidying of interval_set ...)
+- Convert this readme to RST so that it renders properly on pypi
