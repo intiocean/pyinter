@@ -49,7 +49,7 @@ Todos
 - ensure all functions have docstrings describing the inputs and outputs
 - Convert this readme to RST so that it renders properly on pypi
 
-Cangelog
+Changelog
 ========
 v 0.1.1
 -------
