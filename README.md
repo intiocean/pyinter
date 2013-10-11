@@ -45,7 +45,7 @@ Todos
 -----
 - How to install added to docs
 - make the project a homepage
-- Create a version range as a concrete usable example
+- Create a version range as a concrete usable example (pkg_resources versioning)
 - ensure all functions have docstrings describing the inputs and outputs
 - Convert this readme to RST so that it renders properly on pypi
 
