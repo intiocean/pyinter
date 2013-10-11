@@ -53,7 +53,7 @@ Changelog
 ========
 v 0.1.1
 -------
-Adding Manifest file to fix the pypi release
+Adding Manifest file to fix the pypi release. This was broken because the README.md was not being included in the source distribution but setup.py had a reference to this file and therefore failed to run.
 
 v 0.1
 -----
