@@ -1,6 +1,12 @@
 Pyinter
 =======
 
+.. image:: https://badge.fury.io/py/pyinter.png
+    :target: http://badge.fury.io/py/pyinter
+
+.. image:: https://pypip.in/d/pyinter/badge.png
+        :target: https://crate.io/packages/pyinter
+
 .. image:: https://travis-ci.org/intiocean/pyinter.png?branch=master
         :target: https://travis-ci.org/intiocean/pyinter
 
