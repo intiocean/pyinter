@@ -3,6 +3,11 @@
 Release History
 ---------------
 
+0.1.3 (Not yet released)
+++++++++++++++++++
+
+- Removed *.md from the MANIFEST file as it warns when installing that no files matching *.md are found.
+
 0.1.2 (2013-10-12)
 ++++++++++++++++++
 
