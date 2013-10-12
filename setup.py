@@ -3,9 +3,9 @@ from setuptools import setup, find_packages
 version = '0.1.2'
 
 with open('README.rst', 'r') as f:
-    long_desc = f.readlines()
+    long_desc = f.read()
 with open('HISTORY.rst') as f:
-    long_desc += '\n\n' + f.readlines()
+    long_desc += '\n\n' + f.read()
 
 setup(name='pyinter',
       version=version,
