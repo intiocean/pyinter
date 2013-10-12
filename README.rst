@@ -55,7 +55,7 @@ Or, if you absolutely must:
 
     $ easy_install pyinter
 
-But, I'm told you really shouldn't do that.
+But I'm told you really shouldn't do that.
 
 
 Documentation
