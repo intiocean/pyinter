@@ -3,6 +3,11 @@
 Release History
 ---------------
 
+0.1.2 (2013-10-12)
+++++++++++++++++++
+
+- Fixed the rendering of the README on pypi (hopefully!) by converting it from a .md file to a .rst file.
+
 0.1.1 (2013-10-09)
 ++++++++++++++++++
 
