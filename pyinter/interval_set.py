@@ -8,7 +8,7 @@ class IntervalSet:
         if iterable is None:
             self._data = set()
         elif all(isinstance(el, Interval) for el in iterable):
-            self._data = set(iterable)  #  TODO: fix bug pyinter.IntervalSet([pyinter.open(1, 7), pyinter.closedopen(5, 10), pyinter.closed(22, 23)]) should only return an inteval set with 2 intervals in it!
+            self._data = set(iterable)
         else:
             raise TypeError('All elements must be Interval objects')
 
