@@ -1,4 +1,3 @@
-include *.md
 include *.txt
 include .travis.yml README.rst HISTORY.rst
 recursive-include doc *.py
