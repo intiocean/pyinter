@@ -4,10 +4,10 @@ python:
   - "2.7"
   - "2.6"
 install:
-  pip install coveralls --use-mirrors  # TODO: put these deps in tests_require
-  pip install pytest
-  pip install pytest-cov
-  pip install coverage
+  - pip install coveralls --use-mirrors  # TODO: put these deps in tests_require
+  - pip install pytest
+  - pip install pytest-cov
+  - pip install coverage
 script:
   py.test --cov=. --cov-report=term --verbose  # TODO: coverage args
 after_success:
