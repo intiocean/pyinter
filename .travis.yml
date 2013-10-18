@@ -3,7 +3,12 @@ python:
   - "3.3"
   - "2.7"
   - "2.6"
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: # no dependencies
-# command to run tests, e.g. python setup.py test
-script:  py.test -v
+install:
+  pip install coveralls --use-mirrors  # TODO: put these deps in tests_require
+  pip install pytest
+  pip install pytest-cov
+  pip install coverage
+script:
+  py.test --cov=. --cov-report=term --verbose  # TODO: coverage args
+after_success:
+  coveralls --verbose
