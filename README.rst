@@ -2,13 +2,16 @@ Pyinter
 =======
 
 .. image:: https://badge.fury.io/py/pyinter.png
-    :target: http://badge.fury.io/py/pyinter
+         :target: http://badge.fury.io/py/pyinter
 
 .. image:: https://pypip.in/d/pyinter/badge.png
-        :target: https://crate.io/packages/pyinter
+         :target: https://crate.io/packages/pyinter
 
 .. image:: https://travis-ci.org/intiocean/pyinter.png?branch=master
-        :target: https://travis-ci.org/intiocean/pyinter
+         :target: https://travis-ci.org/intiocean/pyinter
+
+.. image:: https://coveralls.io/repos/intiocean/pyinter/badge.png?branch=master
+         :target: https://coveralls.io/r/intiocean/pyinter?branch=master
 
 Pyinter is a small and simple library written in Python for performing interval and discontinous range arithmetic.
 
