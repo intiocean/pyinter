@@ -9,6 +9,6 @@ install:
   - pip install pytest-cov
   - pip install coverage
 script:
-  py.test --cov=. --cov-report=term --verbose  # TODO: coverage args
+  py.test --cov=pyinter --cov-report=term --verbose  # TODO: coverage args
 after_success:
   coveralls --verbose
