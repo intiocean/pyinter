@@ -1,13 +1,15 @@
 from setuptools import setup, find_packages
 
-version = '0.2'
+version = '0.1.3'
 
-with open('README.md', 'r') as f:
-    long_desc = f.readlines()
+with open('README.rst', 'r') as f:
+    long_desc = f.read()
+with open('HISTORY.rst') as f:
+    long_desc += '\n\n' + f.read()
 
 setup(name='pyinter',
       version=version,
-      description="An interval package which deals with open, closed or half open intervals.",
+      description="An interval package for Python.",
       long_description=long_desc,
       # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=['Development Status :: 3 - Alpha',
