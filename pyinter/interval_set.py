@@ -51,14 +51,6 @@ class IntervalSet:
         '''
         return self._data.__len__()
 
-    def __nonzero__(self):
-        ''' States if this is True or False
-        '''
-        if self._data:
-            return 1
-        else:
-            return 0
-
     def intersection(self, other):
         '''Returns a new IntervalSet which represents the intersection of each of the intervals in this IntervalSet
         with each of the intervals in the other IntervalSet.
