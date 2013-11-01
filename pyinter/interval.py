@@ -2,51 +2,51 @@ import operator
 
 
 def open(lower_value, upper_value):
-    '''Helper function to construct an interval object with open lower and upper.
+    """Helper function to construct an interval object with open lower and upper.
 
     For example:
 
     >>> open(100.2, 800.9)
     (100.2, 800.9)
-    '''
+    """
     return Interval(Interval.OPEN, lower_value, upper_value, Interval.OPEN)
 
 
 def closed(lower_value, upper_value):
-    '''Helper function to construct an interval object with closed lower and upper.
+    """Helper function to construct an interval object with closed lower and upper.
 
     For example:
 
     >>> closed(100.2, 800.9)
     [100.2, 800.9]
-    '''
+    """
     return Interval(Interval.CLOSED, lower_value, upper_value, Interval.CLOSED)
 
 
 def openclosed(lower_value, upper_value):
-    '''Helper function to construct an interval object with a open lower and closed upper.
+    """Helper function to construct an interval object with a open lower and closed upper.
 
     For example:
 
     >>> openclosed(100.2, 800.9)
     (100.2, 800.9]
-    '''
+    """
     return Interval(Interval.OPEN, lower_value, upper_value, Interval.CLOSED)
 
 
 def closedopen(lower_value, upper_value):
-    '''Helper function to construct an interval object with a closed lower and open upper.
+    """Helper function to construct an interval object with a closed lower and open upper.
 
     For example:
 
     >>> closedopen(100.2, 800.9)
     [100.2, 800.9)
-    '''
+    """
     return Interval(Interval.CLOSED, lower_value, upper_value, Interval.OPEN)
 
 
 class Interval:
-    '''An interval class with methods associated with mathematical intervals.
+    """An interval class with methods associated with mathematical intervals.
     This class can deal with any comparible objects.
 
     *Note: comparison is performed solely on the lower value*
@@ -71,7 +71,7 @@ class Interval:
 
     >>> Interval(Interval.CLOSED, 100.2, 800.9, Interval.OPEN)
     [100.2, 800.9)
-    '''
+    """
     OPEN = 0
     CLOSED = 1
 
@@ -84,8 +84,8 @@ class Interval:
     upper_value = property(fget=lambda self: self._upper_value, doc='This intervals upper value')
 
     def __init__(self, lower, lower_value, upper_value, upper):
-        '''Create a new :class:`~pyinter.Interval` object, lower and upper should be one of
-        :const:`~pyinter.Interval.OPEN` or :const:`~pyinter.Interval.CLOSED`'''
+        """Create a new :class:`~pyinter.Interval` object, lower and upper should be one of
+        :const:`~pyinter.Interval.OPEN` or :const:`~pyinter.Interval.CLOSED`"""
         if lower_value > upper_value:
             raise ValueError('lower_value({lower}) must be smaller than upper_value({upper})'.format(lower=lower_value,
                                                                                                      upper=upper_value))
@@ -113,9 +113,9 @@ class Interval:
 
     def __eq__(self, other):
         if hasattr(other, '_lower') and hasattr(other, 'lower_value') \
-        and hasattr(other, '_upper_value') and hasattr(other, '_upper'):
+            and hasattr(other, '_upper_value') and hasattr(other, '_upper'):
             return self._lower == other._lower and self.lower_value == other.lower_value \
-            and self._upper_value == other._upper_value and self._upper == other._upper
+                       and self._upper_value == other._upper_value and self._upper == other._upper
         else:
             raise NotImplementedError
 
@@ -144,7 +144,7 @@ class Interval:
         return self.union(self, other)
 
     def _contains_value(self, value):
-        '''Helper function for __contains__ to check a single value is contained within the interval'''
+        """Helper function for __contains__ to check a single value is contained within the interval"""
         g = operator.gt if self._lower is self.OPEN else operator.ge
         l = operator.lt if self._upper is self.OPEN else operator.le
         return g(value, self.lower_value) and l(value, self._upper_value)
@@ -197,15 +197,15 @@ class Interval:
         return new_lower, new_upper
 
     def overlaps(self, other):
-        '''If self and other have any overlaping values returns True, otherwise returns False'''
+        """If self and other have any overlaping values returns True, otherwise returns False"""
         if self.lower_value in other or self._upper_value in other or \
-        other.lower_value in self or other._upper_value in self or self == other:
+            other.lower_value in self or other._upper_value in self or self == other:
             return True
         return False
 
     def intersect(self, other):
-        '''Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval`
-        with the other :class:`~pyinter.Interval`'''
+        """Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval`
+        with the other :class:`~pyinter.Interval`"""
         if self.overlaps(other):
             newlower_value = max(self.lower_value, other.lower_value)
             new_upper_value = min(self._upper_value, other._upper_value)
@@ -215,11 +215,11 @@ class Interval:
             return None
 
     def union(self, other):
-        '''Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the union of this
+        """Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the union of this
         :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`.
 
         If the two intervals are overlaping then this will return an :class:`~pyinter.Interval`,
-        otherwise this returns an :class:`~pyinter.IntervalSet`.'''
+        otherwise this returns an :class:`~pyinter.IntervalSet`."""
         if self.overlaps(other):
             newlower_value = min(self.lower_value, other.lower_value)
             new_upper_value = max(self._upper_value, other._upper_value)
@@ -227,4 +227,5 @@ class Interval:
             return Interval(new_lower, newlower_value, new_upper_value, new_upper)
         else:
             from pyinter.interval_set import IntervalSet
+
             return IntervalSet((self, other))

@@ -1,10 +1,11 @@
 class IntervalSet:
-    '''A class to hold collections of intervals, otherwise known as discontinous ranges'''
+    """A class to hold collections of intervals, otherwise known as discontinous ranges"""
 
     _data = set()
 
     def __init__(self, iterable=None):
         from .interval import Interval
+
         if iterable is None:
             self._data = set()
         elif all(isinstance(el, Interval) for el in iterable):
@@ -31,9 +32,9 @@ class IntervalSet:
         return self._data.__iter__()
 
     def _add(self, other):
-        '''Add a interval to the underlying IntervalSet data store. This does not perform any tests as we assume that
+        """Add a interval to the underlying IntervalSet data store. This does not perform any tests as we assume that
         any requirements have already been checked and that this function is being called by an internal function such
-        as union or intersection.'''
+        as union or intersection."""
         if isinstance(other, IntervalSet):
             for interval in other:
                 self._add(interval)
@@ -41,20 +42,19 @@ class IntervalSet:
 
             if len([interval for interval in self if other in interval]) > 0:  # if other is already represented
                 return
-            # remove any intevals which are fully represented by the interval we are adding
+                # remove any intevals which are fully represented by the interval we are adding
             to_remove = [interval for interval in self if interval in other]
             self._data.difference_update(to_remove)
             self._data.add(other)
 
     def __len__(self):
-        ''' Return the length of this object
-        '''
+        """Return the length of this object"""
         return self._data.__len__()
 
     def intersection(self, other):
-        '''Returns a new IntervalSet which represents the intersection of each of the intervals in this IntervalSet
+        """Returns a new IntervalSet which represents the intersection of each of the intervals in this IntervalSet
         with each of the intervals in the other IntervalSet.
-        '''
+        """
         result = IntervalSet()
         for other_inter in other:
             for interval in self:
@@ -64,8 +64,8 @@ class IntervalSet:
         return result
 
     def union(self, other):
-        '''Returns a new IntervalSet which represents the union of each of the intervals in this IntervalSet with each
-        of the intervals in the other IntervalSet'''
+        """Returns a new IntervalSet which represents the union of each of the intervals in this IntervalSet with each
+        of the intervals in the other IntervalSet"""
         result = IntervalSet()
         for other_inter in other:
             for interval in self:
