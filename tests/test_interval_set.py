@@ -100,3 +100,18 @@ def test_union_of_equal():
     first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
     result = first.union(first)
     assert result == first
+
+
+def test_length_of_empty_is_zero():
+    assert len(IntervalSet()) == 0
+
+
+def test_len_works_as_expected():
+    assert len(IntervalSet((i.open(1, 5), i.closed(7, 10)))) == 2
+
+
+def test_length_of_unioned():
+    first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
+    second = IntervalSet((i.open(8, 21), i.closed(22,23)))
+    # This is of length 3 as 2 of the intervals overlap and therefore join together
+    assert len(first.union(second)) == 3
