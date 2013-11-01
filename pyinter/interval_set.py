@@ -54,6 +54,7 @@ class IntervalSet:
     def intersection(self, other):
         """Returns a new IntervalSet which represents the intersection of each of the intervals in this IntervalSet
         with each of the intervals in the other IntervalSet.
+        :param other: An IntervalSet to intersect with this one.
         """
         result = IntervalSet()
         for other_inter in other:
@@ -65,7 +66,9 @@ class IntervalSet:
 
     def union(self, other):
         """Returns a new IntervalSet which represents the union of each of the intervals in this IntervalSet with each
-        of the intervals in the other IntervalSet"""
+        of the intervals in the other IntervalSet
+        :param other: An IntervalSet to union with this one.
+        """
         result = IntervalSet()
         for other_inter in other:
             for interval in self:
