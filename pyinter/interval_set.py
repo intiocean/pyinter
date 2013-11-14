@@ -8,9 +8,10 @@ class IntervalSet:
 
         if iterable is None:
             self._data = set()
-        elif all(isinstance(el, Interval) for el in iterable):
-            self._data = set(iterable)
         else:
+            self._data = set(iterable)
+
+        if not all(isinstance(el, Interval) for el in self._data):
             raise TypeError('All elements must be Interval objects')
 
     def __repr__(self):
