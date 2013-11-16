@@ -10,7 +10,7 @@ Release History
 0.1.3 (2013-11-16)
 ++++++++++++++++++
 
-- Removed *.md from the MANIFEST file as it warns when installing that no files matching *.md are found.
+- Removed \*.md from the MANIFEST file as it warns when installing that no files matching \*.md are found.
 - Fix allowing an IntervalSet to be initialised with a generator.
 
 0.1.2 (2013-10-12)
