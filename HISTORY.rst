@@ -5,7 +5,7 @@ Release History
 
 0.1.4 (Not yet released)
 ++++++++++++++++++
-
+- Fix formatting in HISTORY.rst
 
 0.1.3 (2013-11-16)
 ++++++++++++++++++
