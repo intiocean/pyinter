@@ -5,7 +5,7 @@ Release History
 
 0.1.4 (2013-11-16)
 ++++++++++++++++++
-- Fix formatting in HISTORY.rst
+- Fix formatting in HISTORY.rst which was stopping the pypi page rendering it.
 
 0.1.3 (2013-11-16)
 ++++++++++++++++++
