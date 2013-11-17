@@ -2,6 +2,9 @@
 
 Release History
 ---------------
+0.1.5 (Not yet released)
+++++++++++++++++++
+- Fix the __all__ list so that you can `from pyinter import *`.
 
 0.1.4 (2013-11-16)
 ++++++++++++++++++

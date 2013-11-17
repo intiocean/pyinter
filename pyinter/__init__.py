@@ -6,4 +6,5 @@ from pyinter.interval import Interval, open, closed, openclosed, closedopen
 from pyinter.interval_set import IntervalSet
 from pyinter import examples
 
-__all__ = [Interval, open, closed, openclosed, closedopen, IntervalSet, examples]
+__all__ = [el for el in dir() if not el.startswith('_')]
+del el
