@@ -2,8 +2,11 @@
 
 Release History
 ---------------
+0.1.5 (Not yet released)
+++++++++++++++++++
 
-0.1.4 (Not yet released)
+
+0.1.4 (2013-11-16)
 ++++++++++++++++++
 - Fix formatting in HISTORY.rst
 
