@@ -44,7 +44,7 @@ def test_values_in():
 
 def test_intersection_of_disjoint_is_empty():
     first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
-    second = IntervalSet((i.open(20,21), i.closed(22,23)))
+    second = IntervalSet((i.open(20, 21), i.closed(22, 23)))
     expected = IntervalSet()
     result = first.intersection(second)
     assert result == expected
@@ -52,7 +52,7 @@ def test_intersection_of_disjoint_is_empty():
 
 def test_intersection_of_overlapping():
     first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
-    second = IntervalSet((i.open(8, 21), i.closed(22,23)))
+    second = IntervalSet((i.open(8, 21), i.closed(22, 23)))
     expected = IntervalSet((i.openclosed(8, 10), ))
     result = first.intersection(second)
     assert result == expected
@@ -60,7 +60,7 @@ def test_intersection_of_overlapping():
 
 def test_intersection_of_exactly_overlapping():
     first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
-    second = IntervalSet((i.open(1, 5), i.closed(7,23)))
+    second = IntervalSet((i.open(1, 5), i.closed(7, 23)))
     expected = IntervalSet((i.open(1, 5), i.closed(7, 10)))
     result = first.intersection(second)
     assert result == expected
@@ -68,7 +68,7 @@ def test_intersection_of_exactly_overlapping():
 
 def test_intersection_of_almost_overlapping():
     first = IntervalSet((i.open(1, 5), i.closedopen(7, 10)))
-    second = IntervalSet((i.open(1, 5), i.closed(7,23)))
+    second = IntervalSet((i.open(1, 5), i.closed(7, 23)))
     expected = IntervalSet((i.open(1, 5), i.closedopen(7, 10)))
     result = first.intersection(second)
     assert result == expected
@@ -82,7 +82,7 @@ def test_intersection_of_equal():
 
 def test_union_of_overlapping():
     first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
-    second = IntervalSet((i.open(8, 21), i.closed(22,23)))
+    second = IntervalSet((i.open(8, 21), i.closed(22, 23)))
     expected = IntervalSet((i.open(1, 5), i.closedopen(7, 21), i.closed(22, 23)))
     result = first.union(second)
     assert result == expected
@@ -90,7 +90,7 @@ def test_union_of_overlapping():
 
 def test_union_of_disjoint():
     first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
-    second = IntervalSet((i.open(12, 21), i.closed(22,23)))
+    second = IntervalSet((i.open(12, 21), i.closed(22, 23)))
     expected = IntervalSet((i.open(1, 5), i.closed(7, 10), i.open(12, 21), i.closed(22, 23)))
     result = first.union(second)
     assert result == expected
@@ -112,7 +112,7 @@ def test_len_works_as_expected():
 
 def test_length_of_unioned():
     first = IntervalSet((i.open(1, 5), i.closed(7, 10)))
-    second = IntervalSet((i.open(8, 21), i.closed(22,23)))
+    second = IntervalSet((i.open(8, 21), i.closed(22, 23)))
     # This is of length 3 as 2 of the intervals overlap and therefore join together
     assert len(first.union(second)) == 3
 
