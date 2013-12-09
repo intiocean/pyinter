@@ -1,4 +1,4 @@
-class IntervalSet:
+class IntervalSet(object):
     """A class to hold collections of intervals, otherwise known as discontinous ranges"""
 
     _data = set()

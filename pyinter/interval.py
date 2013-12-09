@@ -45,7 +45,7 @@ def closedopen(lower_value, upper_value):
     return Interval(Interval.CLOSED, lower_value, upper_value, Interval.OPEN)
 
 
-class Interval:
+class Interval(object):
     """An interval class with methods associated with mathematical intervals.
     This class can deal with any comparible objects.
 
