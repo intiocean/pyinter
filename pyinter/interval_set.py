@@ -4,15 +4,13 @@ class IntervalSet(object):
     _data = set()
 
     def __init__(self, iterable=None):
-        from .interval import Interval
-
-        if iterable is None:
-            self._data = set()
-        else:
-            self._data = set(iterable)
-
-        if not all(isinstance(el, Interval) for el in self._data):
-            raise TypeError('All elements must be Interval objects')
+        """Create an interval set.
+        :param iterable: An optional iterable of Interval objects to initialise the IntervalSet with.
+        """
+        self._data = set()
+        if iterable is not None:
+            for el in iterable:
+                self.add(el)
 
     def __repr__(self):
         return '{clazz}{elements}'.format(clazz=self.__class__.__name__, elements=tuple(sorted(self._data)))
@@ -35,18 +33,15 @@ class IntervalSet(object):
     def _add(self, other):
         """Add a interval to the underlying IntervalSet data store. This does not perform any tests as we assume that
         any requirements have already been checked and that this function is being called by an internal function such
-        as union or intersection."""
-        if isinstance(other, IntervalSet):
-            for interval in other:
-                self._add(interval)
-        else:
-
-            if len([interval for interval in self if other in interval]) > 0:  # if other is already represented
-                return
-                # remove any intevals which are fully represented by the interval we are adding
-            to_remove = [interval for interval in self if interval in other]
-            self._data.difference_update(to_remove)
-            self._data.add(other)
+        as union(), intersection() or add().
+        :param other: An Interval to add to this one
+        """
+        if len([interval for interval in self if other in interval]) > 0:  # if other is already represented
+            return
+        # remove any intervals which are fully represented by the interval we are adding
+        to_remove = [interval for interval in self if interval in other]
+        self._data.difference_update(to_remove)
+        self._data.add(other)
 
     def __len__(self):
         """Return the length of this object"""
@@ -57,6 +52,7 @@ class IntervalSet(object):
         with each of the intervals in the other IntervalSet.
         :param other: An IntervalSet to intersect with this one.
         """
+        # if self or other is empty the intersection will be empty
         result = IntervalSet()
         for other_inter in other:
             for interval in self:
@@ -71,7 +67,30 @@ class IntervalSet(object):
         :param other: An IntervalSet to union with this one.
         """
         result = IntervalSet()
-        for other_inter in other:
-            for interval in self:
-                result._add(other_inter.union(interval))
+        for el in self:
+            result.add(el)
+        for el in other:
+            result.add(el)
         return result
+
+    def add(self, other):
+        """
+        Add an Interval to the IntervalSet by taking the union of the given Interval object with the existing
+        Interval objects in self.
+
+        This has no effect if the Interval is already represented.
+        :param other: an Interval to add to this IntervalSet.
+        """
+        to_add = set()
+        for inter in self:
+            if inter.overlaps(other):  # if it overlaps with this interval then the union will be a single interval
+                to_add.add(inter.union(other))
+        if len(to_add) == 0:  # other must not overlap with any interval in self (self could be empty!)
+            to_add.add(other)
+        # Now add the intervals found to self
+        if len(to_add) > 1:
+            set_to_add = IntervalSet(to_add)  # creating an interval set unions any overlapping intervals
+            for el in set_to_add:
+                self._add(el)
+        elif len(to_add) == 1:
+            self._add(to_add.pop())

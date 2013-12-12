@@ -120,3 +120,70 @@ def test_length_of_unioned():
 def test_initialising_with_generator_does_not_consume_generator_before_storing_items():
     generator = (el for el in (i.open(1, 5), i.closed(7, 10)))
     assert len(IntervalSet(generator)) == 2
+
+
+def test_union_is_symmetric():  # check expected result and symmetric property
+    expected = IntervalSet((i.open(1, 2), i.open(4, 7), i.open(12, 13)))
+    first = IntervalSet((i.open(1, 2), i.open(4, 6)))
+    second = IntervalSet((i.open(5, 7), i.open(12, 13)))
+    assert first.union(second) == expected
+    assert second.union(first) == expected
+
+
+def test_intersection_is_symmetric():  # check expected result and symmetric property
+    expected = IntervalSet((i.open(5, 6),))
+    first = IntervalSet((i.open(1, 2), i.open(4, 6)))
+    second = IntervalSet((i.open(5, 7), i.open(12, 13)))
+    assert first.intersection(second) == expected
+    assert second.intersection(first) == expected
+
+
+def test_unioning_empty_interval_set_with_non_empty_has_the_correct_len():
+    result = IntervalSet().union(IntervalSet((i.open(1, 2), i.open(3, 4))))
+    assert len(result) == 2
+
+
+def test_initialising_interval_with_overlapping_intervals_unions_them():
+    expected = IntervalSet((i.open(1, 10),))
+    result = IntervalSet([i.open(1, 7), i.closedopen(5, 10)])
+    assert result == expected
+
+
+def test_intersection_on_empty_set_works():
+    expected = IntervalSet()
+    result = IntervalSet().intersection(IntervalSet((i.open(1, 7),)))
+    assert result == expected
+
+
+def test_union_on_empty_set_works():
+    expected = IntervalSet((i.open(1, 7),))
+    result = IntervalSet().union(IntervalSet((i.open(1, 7),)))
+    assert result == expected
+
+
+def test_add_to_empty():
+    expected = IntervalSet((i.open(1, 7),))
+    result = IntervalSet()
+    result.add(i.open(1, 7))
+    assert result == expected
+
+
+def test_add_overlapping_unions():
+    expected = IntervalSet((i.open(1, 9),))
+    result = IntervalSet((i.open(1, 7),))
+    result.add(i.open(2, 9))
+    assert result == expected
+
+
+def test_add_non_overlapping_unions():
+    expected = IntervalSet((i.open(1, 7), i.open(10, 20)))
+    result = IntervalSet((i.open(1, 7),))
+    result.add(i.open(10, 20))
+    assert result == expected
+
+
+def test_add_already_contained_has_no_effect():
+    expected = IntervalSet((i.open(1, 7),))
+    result = IntervalSet((i.open(1, 7),))
+    result.add(i.open(2, 4))
+    assert result == expected
