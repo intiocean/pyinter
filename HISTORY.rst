@@ -4,7 +4,7 @@ Release History
 ---------------
 1.1.5 (2013-12-13)
 ++++++++++++++++++
-- Fix the __all__ list so that you can `from pyinter import *`.
+- Fix the `__all__` list so that you can `from pyinter import *`.
 - Change classes to new style classes (inheriting from object)
 - Added an `add()` function to the `IntervalSet` class. This will add (union) an Interval inplace. (similarly to `set().add()`)
 - The optional iterable of Interval objects passed when initialising an `IntervalSet` is now added Interval by Interval so that initialising with overlapping intervals works as expected.
