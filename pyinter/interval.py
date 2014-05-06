@@ -1,6 +1,6 @@
 import operator
 from pyinter.interval_set import IntervalSet
-from extrema import Infinity, NegativeInfinity
+from pyinter.extrema import Infinity, NegativeInfinity
 
 NEGATIVE_INFINITY = NegativeInfinity()
 INFINITY = Infinity()
