@@ -8,7 +8,6 @@ def test_complement():
     (lower, middle, upper) = intervals.complement()
     assert lower == i.openclosed(i.NEGATIVE_INFINITY, 3)
 
-
 def test_creation():
     one = i.open(3, 6)
     two = i.open(7, 10)

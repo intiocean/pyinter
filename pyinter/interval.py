@@ -6,6 +6,8 @@ class NegativeInfinity(object):
     return (type(other) == NegativeInfinity)
 
   def __lt__(self, other):
+    if self == other:
+      return False
     return True
 
   def __le__(self, other):
@@ -31,6 +33,8 @@ class Infinity(object):
     return False
 
   def __gt__(self, other):
+    if other == self:
+      return False
     return True
 
   def __ge__(self, other):
