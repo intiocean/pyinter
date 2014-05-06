@@ -5,8 +5,12 @@ def test_complement():
     one = i.open(3, 6)
     two = i.open(7, 10)
     intervals = IntervalSet([one, two])
-    (lower, middle, upper) = intervals.complement()
+    complement = intervals.complement()
+    (lower, middle, upper) = sorted(complement)
+
     assert lower == i.openclosed(i.NEGATIVE_INFINITY, 3)
+    assert middle == i.closed(6,7)
+    assert upper == i.closedopen(10, i.INFINITY)
 
 def test_creation():
     one = i.open(3, 6)
@@ -15,12 +19,10 @@ def test_creation():
     result = IntervalSet([one, two])
     assert result._data == expected_data
 
-
 def test_equality_empty_interval_sets():
     one = IntervalSet()
     two = IntervalSet()
     assert one == two
-
 
 def test_equality_of_two_equal_instances():
     one = IntervalSet([i.open(1, 10)])

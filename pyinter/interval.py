@@ -1,51 +1,9 @@
 import operator
 from pyinter.interval_set import IntervalSet
-
-class NegativeInfinity(object):
-  def __eq__(self, other):
-    return (type(other) == NegativeInfinity)
-
-  def __lt__(self, other):
-    if self == other:
-      return False
-    return True
-
-  def __le__(self, other):
-    return True
-
-  def __gt__(self, other):
-    return False
-
-  def __ge__(self, other):
-    return False
-
-  def __hash__(self):
-    return id(self)
-
-class Infinity(object):
-  def __eq__(self, other):
-    return (type(other) == Infinity)
-
-  def __lt__(self, other):
-    return False
-
-  def __le__(self, other):
-    return False
-
-  def __gt__(self, other):
-    if other == self:
-      return False
-    return True
-
-  def __ge__(self, other):
-    return True
-
-  def __hash__(self):
-    return id(self)
+from extrema import Infinity, NegativeInfinity
 
 NEGATIVE_INFINITY = NegativeInfinity()
 INFINITY = Infinity()
-
 
 def open(lower_value, upper_value):
     """Helper function to construct an interval object with open lower and upper.
