@@ -1,3 +1,5 @@
+import functools
+
 class IntervalSet(object):
     """A class to hold collections of intervals, otherwise known as discontinous ranges"""
 
@@ -98,4 +100,4 @@ class IntervalSet(object):
     def complement(self):
       def intersection(a, b):
         return a.intersection(b)
-      return reduce(intersection, [interval.complement() for interval in list(self)])
+      return functools.reduce(intersection, [interval.complement() for interval in list(self)])
