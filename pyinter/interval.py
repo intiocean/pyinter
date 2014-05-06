@@ -1,4 +1,46 @@
 import operator
+from pyinter.interval_set import IntervalSet
+
+class NegativeInfinity(object):
+  def __eq__(self, other):
+    return (type(other) == NegativeInfinity)
+
+  def __lt__(self, other):
+    return True
+
+  def __le__(self, other):
+    return True
+
+  def __gt__(self, other):
+    return False
+
+  def __ge__(self, other):
+    return False
+
+  def __hash__(self):
+    return id(self)
+
+class Infinity(object):
+  def __eq__(self, other):
+    return (type(other) == Infinity)
+
+  def __lt__(self, other):
+    return False
+
+  def __le__(self, other):
+    return False
+
+  def __gt__(self, other):
+    return True
+
+  def __ge__(self, other):
+    return True
+
+  def __hash__(self):
+    return id(self)
+
+NEGATIVE_INFINITY = NegativeInfinity()
+INFINITY = Infinity()
 
 
 def open(lower_value, upper_value):
@@ -229,3 +271,14 @@ class Interval(object):
             from pyinter.interval_set import IntervalSet
 
             return IntervalSet((self, other))
+
+    def complement(self):
+      def opposite_boundary_type(boundary):
+        if (boundary == self.OPEN):
+          return self.CLOSED
+        return self.OPEN
+
+      return IntervalSet([
+        Interval(self.OPEN, NEGATIVE_INFINITY, self.lower_value, opposite_boundary_type(self._upper)),
+        Interval(opposite_boundary_type(self._lower), self.upper_value, INFINITY, self.OPEN),
+      ])

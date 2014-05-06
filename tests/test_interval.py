@@ -1,6 +1,21 @@
 from pyinter import interval as i
 from pyinter import IntervalSet
 
+def test_complement_open():
+  unit = i.open(0,1)
+  complement = unit.complement()
+  intervals = list(complement)
+  (first_interval, second_interval) = intervals
+  assert first_interval == i.openclosed(i.NEGATIVE_INFINITY, 0)
+  assert second_interval == i.closedopen(1, i.INFINITY)
+
+def test_complement_closed():
+  unit = i.closed(0,1)
+  complement = unit.complement()
+  intervals = list(complement)
+  (first_interval, second_interval) = intervals
+  assert first_interval == i.open(i.NEGATIVE_INFINITY, 0)
+  assert second_interval == i.open(1, i.INFINITY)
 
 def test_intersect_overlapping():
     one = i.open(3, 6)
@@ -16,7 +31,7 @@ def test_intersect_non_overlapping():
     expected = None
     assert one.intersect(two) == expected
     assert two.intersect(one) == expected
-    
+
 
 def test_intersect_identical():
     one = i.open(3, 6)

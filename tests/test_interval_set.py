@@ -1,6 +1,13 @@
 from pyinter import interval as i
 from pyinter import IntervalSet
 
+def test_complement():
+    one = i.open(3, 6)
+    two = i.open(7, 10)
+    intervals = IntervalSet([one, two])
+    (lower, middle, upper) = intervals.complement()
+    assert lower == i.openclosed(i.NEGATIVE_INFINITY, 3)
+
 
 def test_creation():
     one = i.open(3, 6)

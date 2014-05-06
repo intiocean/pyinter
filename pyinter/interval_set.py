@@ -94,3 +94,8 @@ class IntervalSet(object):
                 self._add(el)
         elif len(to_add) == 1:
             self._add(to_add.pop())
+
+    def complement(self):
+      def intersection(a, b):
+        return a.intersection(b)
+      return reduce(intersection, [interval.complement() for interval in list(self)])
