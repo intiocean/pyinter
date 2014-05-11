@@ -4,8 +4,9 @@ Release History
 ---------------
 1.1.6 (2014-05-11)
 ++++++++++++++++++
-- Add a `Interval` and `IntervalSet` complement
-- Increase test coverage
+- Add a complement function
+- Fix bug with using & and | for `union()` and `intersection()`
+- Increase test coverage!
 
 1.1.5 (2013-12-13)
 ++++++++++++++++++
