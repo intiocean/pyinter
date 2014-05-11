@@ -18,9 +18,9 @@ def test_inf_is_greater_than_date_now():
     assert datetime.date.today() < INFINITY
 
 
-def test_inf_is_greater_than_max_int():
-    assert INFINITY > sys.maxint
-    assert sys.maxint < INFINITY
+def test_inf_is_greater_than_a_large_number():
+    assert INFINITY > sys.maxsize
+    assert sys.maxsize < INFINITY
 
 
 def test_neg_inf_is_smaller_than_one():
@@ -38,6 +38,6 @@ def test_neg_inf_is_smaller_than_date_now():
     assert datetime.date.today() > NEGATIVE_INFINITY
 
 
-def test_neg_inf_is_smaller_than_max_int():
-    assert NEGATIVE_INFINITY < sys.maxint
-    assert sys.maxint > NEGATIVE_INFINITY
+def test_neg_inf_is_smaller_than_a_large_negative_number():
+    assert NEGATIVE_INFINITY < -sys.maxsize
+    assert -sys.maxsize > NEGATIVE_INFINITY
