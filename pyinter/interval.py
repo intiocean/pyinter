@@ -143,10 +143,10 @@ class Interval(object):
         return hash(self.lower_value)
 
     def __and__(self, other):
-        return self.intersect(self, other)
+        return self.intersect(other)
 
     def __or__(self, other):
-        return self.union(self, other)
+        return self.union(other)
 
     def _contains_value(self, value):
         """Helper function for __contains__ to check a single value is contained within the interval"""

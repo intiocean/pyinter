@@ -24,6 +24,14 @@ def test_intersect_identical():
     assert one.intersect(one) == expected
 
 
+def test_intersection_via_overloaded_and():
+    one = i.open(3, 6)
+    two = i.open(4, 10)
+    expected = i.open(4, 6)
+    assert one & two == expected
+    assert two & one == expected
+
+
 def test_union_overlapping():
     one = i.open(3, 6)
     two = i.open(4, 10)
@@ -44,6 +52,14 @@ def test_union_identical():
     one = i.open(3, 6)
     expected = one
     assert one.union(one) == expected
+
+
+def test_union_via_overloaded_or():
+    one = i.open(3, 6)
+    two = i.open(4, 10)
+    expected = i.open(3, 10)
+    assert one | two == expected
+    assert two | one == expected
 
 
 def test_complement_open():
