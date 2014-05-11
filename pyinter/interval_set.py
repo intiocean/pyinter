@@ -1,7 +1,7 @@
 import functools
 
 class IntervalSet(object):
-    """A class to hold collections of intervals, otherwise known as discontinous ranges"""
+    """A class to hold collections of intervals, otherwise known as discontinuous ranges"""
 
     _data = set()
 
