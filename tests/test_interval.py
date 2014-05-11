@@ -1,3 +1,4 @@
+import pytest
 from pyinter import interval as i
 from pyinter import IntervalSet
 
@@ -96,3 +97,8 @@ def test_repr():
     assert repr(i.openclosed(1, 2)) == '(1, 2]'
     assert repr(i.closed(1, 2)) == '[1, 2]'
     assert repr(i.closedopen(1, 2)) == '[1, 2)'
+
+
+def test_raises_exception_if_lower_is_larger_than_upper_value():
+    with pytest.raises(ValueError):
+        i.open(2, 1)

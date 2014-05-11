@@ -1,3 +1,4 @@
+import pytest
 from pyinter import interval as i
 from pyinter import IntervalSet
 
@@ -175,6 +176,13 @@ def test_add_overlapping_unions():
     assert result == expected
 
 
+def test_add_overlapping_with_multiple():
+    expected = IntervalSet((i.open(1, 20), i.open(30, 40)))
+    result = IntervalSet((i.open(1, 7), i.open(10, 20), i.open(30, 40)))
+    result.add(i.open(2, 15))
+    assert result == expected
+
+
 def test_add_non_overlapping_unions():
     expected = IntervalSet((i.open(1, 7), i.open(10, 20)))
     result = IntervalSet((i.open(1, 7),))
@@ -204,3 +212,8 @@ def test_complement():
 def test_repr():
     interval_set = IntervalSet([i.open(3, 6), i.open(7, 10)])
     assert repr(interval_set) == 'IntervalSet((3, 6), (7, 10))'
+
+
+def test_comparison_raises_not_implemented_error_if_it_cannot_compare():
+    with pytest.raises(NotImplementedError):
+        IntervalSet() == 1
