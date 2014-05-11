@@ -1,9 +1,6 @@
 import operator
 from pyinter.interval_set import IntervalSet
-
-
-NEGATIVE_INFINITY = float('-inf')
-INFINITY = float('inf')
+from .extrema import INFINITY, NEGATIVE_INFINITY
 
 
 def open(lower_value, upper_value):
