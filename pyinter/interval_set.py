@@ -1,5 +1,6 @@
 import functools
 
+
 class IntervalSet(object):
     """A class to hold collections of intervals, otherwise known as discontinuous ranges"""
 
@@ -98,6 +99,5 @@ class IntervalSet(object):
             self._add(to_add.pop())
 
     def complement(self):
-      def intersection(a, b):
-        return a.intersection(b)
-      return functools.reduce(intersection, [interval.complement() for interval in list(self)])
+        intersection = lambda a, b: a.intersection(b)
+        return functools.reduce(intersection, [interval.complement() for interval in list(self)])

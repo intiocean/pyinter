@@ -2,6 +2,11 @@
 
 Release History
 ---------------
+1.1.6 (2014-05-11)
+++++++++++++++++++
+- Add a `Interval` and `IntervalSet` complement
+- Increase test coverage
+
 1.1.5 (2013-12-13)
 ++++++++++++++++++
 - Fix the `__all__` list so that you can `from pyinter import *`.
