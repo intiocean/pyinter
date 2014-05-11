@@ -1,9 +1,10 @@
 import operator
 from pyinter.interval_set import IntervalSet
-from pyinter.extrema import Infinity, NegativeInfinity
 
-NEGATIVE_INFINITY = NegativeInfinity()
-INFINITY = Infinity()
+
+NEGATIVE_INFINITY = float('-inf')
+INFINITY = float('inf')
+
 
 def open(lower_value, upper_value):
     """Helper function to construct an interval object with open lower and upper.
@@ -235,12 +236,8 @@ class Interval(object):
             return IntervalSet((self, other))
 
     def complement(self):
-      def opposite_boundary_type(boundary):
-        if (boundary == self.OPEN):
-          return self.CLOSED
-        return self.OPEN
-
-      return IntervalSet([
-        Interval(self.OPEN, NEGATIVE_INFINITY, self.lower_value, opposite_boundary_type(self._upper)),
-        Interval(opposite_boundary_type(self._lower), self.upper_value, INFINITY, self.OPEN),
-      ])
+        opposite_boundary_type = lambda b: self.CLOSED if b == self.OPEN else self.OPEN
+        return IntervalSet([
+            Interval(self.OPEN, NEGATIVE_INFINITY, self.lower_value, opposite_boundary_type(self._upper)),
+            Interval(opposite_boundary_type(self._lower), self.upper_value, INFINITY, self.OPEN),
+        ])

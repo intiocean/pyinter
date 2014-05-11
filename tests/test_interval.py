@@ -1,32 +1,6 @@
 from pyinter import interval as i
 from pyinter import IntervalSet
 
-def test_complement_open():
-    unit = i.open(0,1)
-    complement = unit.complement()
-    intervals = list(complement)
-    (lower_interval, upper_interval) = intervals
-    assert lower_interval == i.openclosed(i.NEGATIVE_INFINITY, 0)
-    assert upper_interval == i.closedopen(1, i.INFINITY)
-
-def test_complement_closed():
-    unit = i.closed(0,1)
-    complement = unit.complement()
-    intervals = list(complement)
-    (lower_interval, upper_interval) = intervals
-    assert lower_interval == i.open(i.NEGATIVE_INFINITY, 0)
-    assert upper_interval == i.open(1, i.INFINITY)
-
-def test_complement_empty():
-    empty = i.open(0,0)
-    (interval,) = empty.complement()
-    assert interval == i.open(i.NEGATIVE_INFINITY, i.INFINITY)
-
-def test_compelement_whole():
-    whole = i.open(i.NEGATIVE_INFINITY, i.INFINITY)
-    (lower_interval, upper_interval) = whole.complement()
-    assert lower_interval == i.openclosed(i.NEGATIVE_INFINITY, i.NEGATIVE_INFINITY)
-    assert upper_interval == i.closedopen(i.INFINITY, i.INFINITY)
 
 def test_intersect_overlapping():
     one = i.open(3, 6)
@@ -70,3 +44,32 @@ def test_union_identical():
     one = i.open(3, 6)
     expected = one
     assert one.union(one) == expected
+
+
+def test_complement_open():
+    unit = i.open(0, 1)
+    complement = unit.complement()
+    (lower_interval, upper_interval) = sorted(complement)  # an IntervalSet is not sorted
+    assert lower_interval == i.openclosed(i.NEGATIVE_INFINITY, 0)
+    assert upper_interval == i.closedopen(1, i.INFINITY)
+
+
+def test_complement_closed():
+    unit = i.closed(0, 1)
+    complement = unit.complement()
+    (lower_interval, upper_interval) = sorted(complement)  # an IntervalSet is not sorted
+    assert lower_interval == i.open(i.NEGATIVE_INFINITY, 0)
+    assert upper_interval == i.open(1, i.INFINITY)
+
+
+def test_complement_empty():
+    empty = i.open(0, 0)
+    (interval,) = empty.complement()
+    assert interval == i.open(i.NEGATIVE_INFINITY, i.INFINITY)
+
+
+def test_complement_whole():
+    whole = i.open(i.NEGATIVE_INFINITY, i.INFINITY)
+    (lower_interval, upper_interval) = sorted(whole.complement())  # an IntervalSet is not sorted
+    assert lower_interval == i.openclosed(i.NEGATIVE_INFINITY, i.NEGATIVE_INFINITY)
+    assert upper_interval == i.closedopen(i.INFINITY, i.INFINITY)
