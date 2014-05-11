@@ -1,4 +1,9 @@
 import operator
+from pyinter.interval_set import IntervalSet
+
+
+NEGATIVE_INFINITY = float('-inf')
+INFINITY = float('inf')
 
 
 def open(lower_value, upper_value):
@@ -113,9 +118,9 @@ class Interval(object):
 
     def __eq__(self, other):
         if hasattr(other, '_lower') and hasattr(other, 'lower_value') \
-            and hasattr(other, '_upper_value') and hasattr(other, '_upper'):
+                and hasattr(other, '_upper_value') and hasattr(other, '_upper'):
             return self._lower == other._lower and self.lower_value == other.lower_value \
-                       and self._upper_value == other._upper_value and self._upper == other._upper
+                and self._upper_value == other._upper_value and self._upper == other._upper
         else:
             raise NotImplementedError
 
@@ -199,7 +204,7 @@ class Interval(object):
     def overlaps(self, other):
         """If self and other have any overlaping values returns True, otherwise returns False"""
         if self.lower_value in other or self._upper_value in other or \
-            other.lower_value in self or other._upper_value in self or self == other:
+                other.lower_value in self or other._upper_value in self or self == other:
             return True
         return False
 
@@ -226,6 +231,11 @@ class Interval(object):
             new_lower, new_upper = self._get_new_lower_upper(other, self.union)
             return Interval(new_lower, newlower_value, new_upper_value, new_upper)
         else:
-            from pyinter.interval_set import IntervalSet
-
             return IntervalSet((self, other))
+
+    def complement(self):
+        opposite_boundary_type = lambda b: self.CLOSED if b == self.OPEN else self.OPEN
+        return IntervalSet([
+            Interval(self.OPEN, NEGATIVE_INFINITY, self.lower_value, opposite_boundary_type(self._upper)),
+            Interval(opposite_boundary_type(self._lower), self.upper_value, INFINITY, self.OPEN),
+        ])
