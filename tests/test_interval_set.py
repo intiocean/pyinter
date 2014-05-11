@@ -199,3 +199,8 @@ def test_complement():
     assert lower == i.openclosed(i.NEGATIVE_INFINITY, 3)
     assert middle == i.closed(6, 7)
     assert upper == i.closedopen(10, i.INFINITY)
+
+
+def test_repr():
+    interval_set = IntervalSet([i.open(3, 6), i.open(7, 10)])
+    assert repr(interval_set) == 'IntervalSet((3, 6), (7, 10))'

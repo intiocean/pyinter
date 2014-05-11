@@ -89,3 +89,10 @@ def test_complement_whole():
     (lower_interval, upper_interval) = sorted(whole.complement())  # an IntervalSet is not sorted
     assert lower_interval == i.openclosed(i.NEGATIVE_INFINITY, i.NEGATIVE_INFINITY)
     assert upper_interval == i.closedopen(i.INFINITY, i.INFINITY)
+
+
+def test_repr():
+    assert repr(i.open(1, 2)) == '(1, 2)'
+    assert repr(i.openclosed(1, 2)) == '(1, 2]'
+    assert repr(i.closed(1, 2)) == '[1, 2]'
+    assert repr(i.closedopen(1, 2)) == '[1, 2)'
