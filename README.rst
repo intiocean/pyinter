@@ -1,17 +1,10 @@
+=======
 Pyinter
 =======
+..
 
-.. image:: https://badge.fury.io/py/pyinter.png
-         :target: http://badge.fury.io/py/pyinter
-
-.. image:: https://pypip.in/d/pyinter/badge.png
-         :target: https://crate.io/packages/pyinter
-
-.. image:: https://travis-ci.org/intiocean/pyinter.png?branch=master
-         :target: https://travis-ci.org/intiocean/pyinter
-
-.. image:: https://coveralls.io/repos/intiocean/pyinter/badge.png?branch=master
-         :target: https://coveralls.io/r/intiocean/pyinter?branch=master
+    |latestversion| |downloads| |masterstatus| |mastercover| |issuecount|
+..
 
 Pyinter is a small and simple library written in Python for performing interval and discontinous range arithmetic.
 
@@ -70,3 +63,32 @@ Documentation is available at http://pyinter.readthedocs.org.
 Contribute
 ----------
 Contributions or suggestions for improvements are welcome.
+
+
+.. |masterstatus| image:: http://img.shields.io/travis/intiocean/pyinter/master.svg?style=flat
+    :target: https://travis-ci.org/intiocean/pyinter
+    :alt: Release Build Status
+
+.. |developstatus| image:: http://img.shields.io/travis/intiocean/pyinter/develop.svg?style=flat
+    :target: https://travis-ci.org/intiocean/pyinter
+    :alt: Development Build Status
+
+.. |latestversion| image:: http://img.shields.io/pypi/v/pyinter.svg?style=flat
+    :target: https://pypi.python.org/pypi/pyinter
+    :alt: Latest Version
+
+.. |downloads| image:: http://img.shields.io/pypi/dw/pyinter.svg?style=flat
+    :target: https://pypi.python.org/pypi/pyinter
+    :alt: Downloads per Week
+
+.. |mastercover| image:: http://img.shields.io/coveralls/intiocean/pyinter/master.svg?style=flat
+    :target: https://travis-ci.org/intiocean/pyinter
+    :alt: Release Test Coverage
+
+.. |developcover| image:: http://img.shields.io/coveralls/intiocean/pyinter/develop.svg?style=flat
+    :target: https://travis-ci.org/intiocean/pyinter
+    :alt: Development Test Coverage
+
+.. |issuecount| image:: http://img.shields.io/github/issues/intiocean/pyinter.svg?style=flat
+    :target: https://github.com/intiocean/pyinter/issues
+    :alt: Github Issues
