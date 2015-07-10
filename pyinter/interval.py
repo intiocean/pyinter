@@ -195,6 +195,11 @@ class Interval(object):
             else:
                 new_upper = self._upper
         return new_lower, new_upper
+    
+    def empty(self):
+        return (self._lower_value >= self._upper_value and
+                self._lower == self.OPEN and
+                self._upper == self.OPEN)
 
     def overlaps(self, other):
         """If self and other have any overlaping values returns True, otherwise returns False"""

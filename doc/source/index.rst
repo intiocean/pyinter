@@ -29,6 +29,8 @@
    .. automethod:: union
 
    .. automethod:: __sub__
+   
+   .. automethod:: empty
 
 
 `Interval` Construction helpers

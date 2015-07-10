@@ -213,6 +213,13 @@ def test_subtract_overlapping():
     ))
     assert left - right == expected
 
+def test_subtract_same():
+    iset = IntervalSet((
+        i.open(1, 1),
+        i.open(15, 15),
+    ))
+    assert iset.empty()
+
 def test_complement():
     one = i.open(3, 6)
     two = i.open(7, 10)

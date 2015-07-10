@@ -89,6 +89,8 @@ class IntervalSet(object):
         This has no effect if the Interval is already represented.
         :param other: an Interval to add to this IntervalSet.
         """
+        if other.empty():
+            return
         # If the other is a collection of intervals add them one by one.
         try:
             for inter in other:
@@ -109,6 +111,9 @@ class IntervalSet(object):
                 self._add(el)
         elif len(to_add) == 1:
             self._add(to_add.pop())
+    
+    def empty(self):
+        return not self._data
 
     def __sub__(self, other):
         """

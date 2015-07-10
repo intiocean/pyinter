@@ -91,11 +91,25 @@ def test_subtract_contained():
     expected = IntervalSet([i.openclosed(3, 4), i.closedopen(5, 6)])
     assert left - right == expected
 
+
+def test_subtract_exact_overlap():
+    left  = i.closed(1,2)
+    right = i.closed(1, 2)
+    assert (left - right).empty()
+
+
 def test_subtract_almost_complete_overlap():
     left  = i.closed(1, 2)
     right = i.open(1, 5)
     expected = i.closed(1, 1)
     assert left - right == expected
+
+def test_empty():
+    assert i.open(1, 1).empty()
+    assert i.open(3, 3).empty()
+    assert not i.open(3, 4).empty()
+    assert not i.openclosed(3, 3).empty()
+    assert not i.closedopen(3, 3).empty()
 
 
 def test_complement_open():
