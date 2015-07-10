@@ -28,6 +28,8 @@
 
    .. automethod:: union
 
+   .. automethod:: __sub__
+
 
 `Interval` Construction helpers
 ...............................
