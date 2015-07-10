@@ -18,13 +18,13 @@
 
    .. describe:: interval | other
 
-   Performs interval intersection just as :meth:`~Interval.intersect`
+   Performs interval union just as :meth:`~Interval.union`
 
    .. automethod:: intersect
 
    .. describe:: interval & other
 
-   Performs interval union just as :meth:`~Interval.union`
+   Performs interval intersection just as :meth:`~Interval.intersect`
 
    .. automethod:: union
 
