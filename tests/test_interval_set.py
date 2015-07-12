@@ -197,6 +197,29 @@ def test_add_already_contained_has_no_effect():
     assert result == expected
 
 
+def test_subtract_non_overlapping():
+    left  = IntervalSet((i.open(1, 4),))
+    right = IntervalSet((i.open(8, 9),))
+    expected = IntervalSet((i.open(1, 4),))
+    assert left - right == expected
+
+def test_subtract_overlapping():
+    left  = IntervalSet((i.open(1, 4), i.open(5, 10)))
+    right = IntervalSet((i.open(0, 2), i.open(6, 8)))
+    expected = IntervalSet((
+        i.closedopen(2, 4),
+        i.openclosed(5, 6),
+        i.closedopen(8, 10),
+    ))
+    assert left - right == expected
+
+def test_subtract_same():
+    iset = IntervalSet((
+        i.open(1, 1),
+        i.open(15, 15),
+    ))
+    assert iset.empty()
+
 def test_complement():
     one = i.open(3, 6)
     two = i.open(7, 10)

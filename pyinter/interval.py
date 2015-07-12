@@ -139,12 +139,6 @@ class Interval(object):
     def __hash__(self):
         return hash(self.lower_value)
 
-    def __and__(self, other):
-        return self.intersect(other)
-
-    def __or__(self, other):
-        return self.union(other)
-
     def _contains_value(self, value):
         """Helper function for __contains__ to check a single value is contained within the interval"""
         g = operator.gt if self._lower is self.OPEN else operator.ge
@@ -166,6 +160,10 @@ class Interval(object):
             return lower_in and upper_in
         else:
             return self._contains_value(item)
+
+    @classmethod
+    def _opposite_boundary_type(cls, bound):
+        return cls.CLOSED if bound == cls.OPEN else cls.OPEN
 
     def _get_new_lower_upper(self, other, operator):
         if operator == self.intersect:
@@ -197,6 +195,11 @@ class Interval(object):
             else:
                 new_upper = self._upper
         return new_lower, new_upper
+    
+    def empty(self):
+        return (self._lower_value >= self._upper_value and
+                self._lower == self.OPEN and
+                self._upper == self.OPEN)
 
     def overlaps(self, other):
         """If self and other have any overlaping values returns True, otherwise returns False"""
@@ -216,6 +219,8 @@ class Interval(object):
         else:
             return None
 
+    __and__ = intersect
+
     def union(self, other):
         """Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the union of this
         :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`.
@@ -230,9 +235,33 @@ class Interval(object):
         else:
             return IntervalSet((self, other))
 
+    __or__ = __add__ = union
+
+    def __sub__(self, other):
+        """Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the subtraction of this
+        :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`.
+
+        The result will contain everything that is contained by the left interval but not contained
+        by the second interval.
+
+        If the `other` interval is enclosed in this one then this will return a
+        :class:`~pyinter.IntervalSet`, otherwise this returns a :class:`~pyinter.Interval`.
+        """
+        if self in other:
+            return open(0, 0)
+        if other in self:
+            return IntervalSet([
+                Interval(self._lower, self._lower_value, other.lower_value, self._opposite_boundary_type(other._lower)),
+                Interval(self._opposite_boundary_type(other._upper), other._upper_value, self.upper_value, self._upper),
+            ])
+        if other.lower_value in self:
+            return Interval(self._lower, self._lower_value, other._lower_value, self._opposite_boundary_type(other._lower))
+        if other.upper_value in self:
+            return Interval(self._opposite_boundary_type(other._upper), other._upper_value, self._upper_value, self._upper)
+        return Interval(self._lower, self._lower_value, self._upper_value, self._upper)
+
     def complement(self):
-        opposite_boundary_type = lambda b: self.CLOSED if b == self.OPEN else self.OPEN
         return IntervalSet([
-            Interval(self.OPEN, NEGATIVE_INFINITY, self.lower_value, opposite_boundary_type(self._upper)),
-            Interval(opposite_boundary_type(self._lower), self.upper_value, INFINITY, self.OPEN),
+            Interval(self.OPEN, NEGATIVE_INFINITY, self.lower_value, self._opposite_boundary_type(self._upper)),
+            Interval(self._opposite_boundary_type(self._lower), self.upper_value, INFINITY, self.OPEN),
         ])
