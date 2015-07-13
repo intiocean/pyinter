@@ -91,13 +91,7 @@ class IntervalSet(object):
         """
         if other.empty():
             return
-        # If the other is a collection of intervals add them one by one.
-        try:
-            for inter in other:
-                self.add(inter)
-            return
-        except TypeError:
-            pass
+
         to_add = set()
         for inter in self:
             if inter.overlaps(other):  # if it overlaps with this interval then the union will be a single interval
@@ -119,15 +113,16 @@ class IntervalSet(object):
         """
         Subtract an Interval or IntervalSet from the intervals in the set.
         """
-        if isinstance(other, IntervalSet):
-            intervals = other._data
-        else:
-            intervals = other,
+        intervals = other if isinstance(other, IntervalSet) else IntervalSet((other,))
         result = IntervalSet()
         for left in self:
             for right in intervals:
-                left -= right
-            result.add(left)
+                left = left - right
+            if isinstance(left, IntervalSet):
+                for interval in left:
+                    result.add(interval)
+            else:
+                result.add(left)
         return result
 
     __sub__ = difference
