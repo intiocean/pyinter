@@ -2,7 +2,11 @@
 
 Release History
 ---------------
-0.1.7 (2014-05-11)
+0.1.8 (2015-07-14)
+++++++++++++++++++
+- Fix formatting in README.rst as pypi isn't rendering it properly.
+
+0.1.7 (2015-07-14)
 ++++++++++++++++++
 - Fix `|` and `&` in the documentation.
 - Implement subtraction of `Interval`'s and `IntervalSet`'s
