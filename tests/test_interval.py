@@ -85,6 +85,20 @@ def test_subtract_overlapping():
     assert left - right == expected
 
 
+def test_subtract_overlapping_start():
+    left  = i.open(1, 10)
+    right = i.open(1, 5)
+    expected = i.closedopen(5, 10)
+    assert left - right == expected
+
+
+def test_subtract_overlapping_end():
+    left  = i.open(1, 10)
+    right = i.open(5, 10)
+    expected = i.openclosed(1, 5)
+    assert left - right == expected
+
+
 def test_subtract_contained():
     left = i.open(3, 6)
     right = i.open(4, 5)
