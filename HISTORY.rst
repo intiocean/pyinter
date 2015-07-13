@@ -2,6 +2,13 @@
 
 Release History
 ---------------
+0.1.7 (2014-05-11)
+++++++++++++++++++
+- Fix `|` and `&` in the documentation.
+- Implement subtraction of `Interval`'s and `IntervalSet`'s
+- Add method `empty()` to detect empty `Interval` objects.
+- Fix, each infinity should always equal itself.
+
 0.1.6 (2014-05-11)
 ++++++++++++++++++
 - Add a complement function
