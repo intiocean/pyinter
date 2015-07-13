@@ -127,6 +127,10 @@ def test_empty():
     assert not i.closedopen(3, 3).empty()
 
 
+def test_subtract_empty_from_empty_is_empty():
+    assert i.open(0, 0) - i.open(0, 0) == i.open(0, 0)
+
+
 def test_subtract_complete_overlap_returns_an_empty_interval():
     left = i.closed(1, 2)
     right = i.closed(1, 2)
