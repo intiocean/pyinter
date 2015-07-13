@@ -1,18 +1,14 @@
 class _Indeterminate(object):
+
+    # required for comparisons with dates, times, datetimes
+    # https://docs.python.org/2/library/datetime.html#date-objects
+    timetuple = tuple()
+
     def __eq__(self, other):
-        return other is self
+        return self is other
 
     def __hash__(self):
         return hash(repr(self))
-
-    def timetuple(self):
-        """
-        In order to stop comparison from falling back to the default scheme of comparing object addresses,
-        date comparison normally raises TypeError if the other comparand isn't also a date object. However,
-        NotImplemented is returned instead if the other comparand has a timetuple() attribute.
-        This hook gives other kinds of date objects a chance at implementing mixed-type comparison.
-        """
-        return tuple()
 
 
 class _NegativeInfinity(_Indeterminate):
@@ -28,6 +24,8 @@ class _NegativeInfinity(_Indeterminate):
         return False
 
     def __ge__(self, other):
+        if self == other:
+            return True
         return False
 
     def __repr__(self):
@@ -39,6 +37,8 @@ class _Infinity(_Indeterminate):
         return False
 
     def __le__(self, other):
+        if self == other:
+            return True
         return False
 
     def __gt__(self, other):

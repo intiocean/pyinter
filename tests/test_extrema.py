@@ -61,6 +61,15 @@ def test_neg_inf_is_not_smaller_than_itself():
     assert not NEGATIVE_INFINITY < NEGATIVE_INFINITY
 
 
+def test_equal_to_selves():
+    assert INFINITY == INFINITY
+    assert NEGATIVE_INFINITY == NEGATIVE_INFINITY
+    assert INFINITY >= INFINITY
+    assert NEGATIVE_INFINITY >= NEGATIVE_INFINITY
+    assert INFINITY <= INFINITY
+    assert NEGATIVE_INFINITY <= NEGATIVE_INFINITY
+
+
 def test_inf_and_neg_inf_have_timetuple_attributes():
     assert hasattr(INFINITY, 'timetuple')
     assert hasattr(NEGATIVE_INFINITY, 'timetuple')
