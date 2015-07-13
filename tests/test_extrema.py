@@ -73,5 +73,3 @@ def test_equal_to_selves():
 def test_inf_and_neg_inf_have_timetuple_attributes():
     assert hasattr(INFINITY, 'timetuple')
     assert hasattr(NEGATIVE_INFINITY, 'timetuple')
-    INFINITY.timetuple()  # call for coverage, this function does nothing just returns an empty tuple
-    NEGATIVE_INFINITY.timetuple()  # call for coverage, this function does nothing just returns an empty tuple
