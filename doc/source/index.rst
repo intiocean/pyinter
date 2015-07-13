@@ -26,7 +26,19 @@
 
    Performs interval intersection just as :meth:`~Interval.intersect`
 
+   .. describe:: interval + other
+
+   Performs interval union just as :meth:`~Interval.union`
+
    .. automethod:: union
+
+   .. describe:: interval - other
+
+   Performs interval difference just as :meth:`~Interval.difference`
+
+   .. automethod:: difference
+   
+   .. automethod:: empty
 
 
 `Interval` Construction helpers

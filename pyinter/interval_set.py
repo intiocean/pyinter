@@ -64,6 +64,8 @@ class IntervalSet(object):
                     result._add(this_intervals_intersection)
         return result
 
+    __and__ = intersection
+
     def union(self, other):
         """Returns a new IntervalSet which represents the union of each of the intervals in this IntervalSet with each
         of the intervals in the other IntervalSet
@@ -76,6 +78,9 @@ class IntervalSet(object):
             result.add(el)
         return result
 
+    __or__ = __add__ = union
+
+
     def add(self, other):
         """
         Add an Interval to the IntervalSet by taking the union of the given Interval object with the existing
@@ -84,6 +89,9 @@ class IntervalSet(object):
         This has no effect if the Interval is already represented.
         :param other: an Interval to add to this IntervalSet.
         """
+        if other.empty():
+            return
+
         to_add = set()
         for inter in self:
             if inter.overlaps(other):  # if it overlaps with this interval then the union will be a single interval
@@ -97,6 +105,27 @@ class IntervalSet(object):
                 self._add(el)
         elif len(to_add) == 1:
             self._add(to_add.pop())
+    
+    def empty(self):
+        return not self._data
+
+    def difference(self, other):
+        """
+        Subtract an Interval or IntervalSet from the intervals in the set.
+        """
+        intervals = other if isinstance(other, IntervalSet) else IntervalSet((other,))
+        result = IntervalSet()
+        for left in self:
+            for right in intervals:
+                left = left - right
+            if isinstance(left, IntervalSet):
+                for interval in left:
+                    result.add(interval)
+            else:
+                result.add(left)
+        return result
+
+    __sub__ = difference
 
     def complement(self):
         intersection = lambda a, b: a.intersection(b)

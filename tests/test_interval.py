@@ -63,6 +63,63 @@ def test_union_via_overloaded_or():
     assert two | one == expected
 
 
+def test_union_via_overloaded_add():
+    one = i.open(3, 6)
+    two = i.open(4, 10)
+    expected = i.open(3, 10)
+    assert one + two == expected
+    assert two + one == expected
+
+
+def test_subtract_non_overlapping():
+    left = i.open(3, 6)
+    right = i.open(8, 10)
+    expected = i.open(3, 6)
+    assert left - right == expected
+
+
+def test_subtract_overlapping():
+    left = i.open(3, 6)
+    right = i.open(4, 8)
+    expected = i.openclosed(3, 4)
+    assert left - right == expected
+
+
+def test_subtract_contained():
+    left = i.open(3, 6)
+    right = i.open(4, 5)
+    expected = IntervalSet([i.openclosed(3, 4), i.closedopen(5, 6)])
+    assert left - right == expected
+
+
+def test_subtract_exact_overlap():
+    left = i.closed(1, 2)
+    right = i.closed(1, 2)
+    assert (left - right).empty()
+
+
+def test_subtract_almost_complete_overlap():
+    left = i.closed(1, 2)
+    right = i.open(1, 5)
+    expected = i.closed(1, 1)
+    assert left - right == expected
+
+
+def test_empty():
+    assert i.open(1, 1).empty()
+    assert i.open(3, 3).empty()
+    assert not i.open(3, 4).empty()
+    assert not i.openclosed(3, 3).empty()
+    assert not i.closedopen(3, 3).empty()
+
+
+def test_subtract_complete_overlap_returns_an_empty_interval():
+    left = i.closed(1, 2)
+    right = i.closed(1, 2)
+    expected = i.open(0, 0)
+    assert left - right == expected
+
+
 def test_complement_open():
     unit = i.open(0, 1)
     complement = unit.complement()
