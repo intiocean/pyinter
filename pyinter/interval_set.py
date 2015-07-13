@@ -115,7 +115,7 @@ class IntervalSet(object):
     def empty(self):
         return not self._data
 
-    def __sub__(self, other):
+    def difference(self, other):
         """
         Subtract an Interval or IntervalSet from the intervals in the set.
         """
@@ -129,6 +129,8 @@ class IntervalSet(object):
                 left -= right
             result.add(left)
         return result
+
+    __sub__ = difference
 
     def complement(self):
         intersection = lambda a, b: a.intersection(b)

@@ -237,7 +237,7 @@ class Interval(object):
 
     __or__ = __add__ = union
 
-    def __sub__(self, other):
+    def difference(self, other):
         """Returns a new Interval or an :class:`~pyinter.IntervalSet` representing the subtraction of this
         :class:`~pyinter.Interval` with the other :class:`~pyinter.Interval`.
 
@@ -265,3 +265,5 @@ class Interval(object):
             Interval(self.OPEN, NEGATIVE_INFINITY, self.lower_value, self._opposite_boundary_type(self._upper)),
             Interval(self._opposite_boundary_type(self._lower), self.upper_value, INFINITY, self.OPEN),
         ])
+
+    __sub__ = difference
