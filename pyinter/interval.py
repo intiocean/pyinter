@@ -247,8 +247,14 @@ class Interval(object):
         If the `other` interval is enclosed in this one then this will return a
         :class:`~pyinter.IntervalSet`, otherwise this returns a :class:`~pyinter.Interval`.
         """
+        if other.empty():
+            return self
         if self in other:
             return open(0, 0)
+        if self._lower == other._lower and self._lower_value == other._lower_value:
+            return Interval(self._opposite_boundary_type(other._upper), other._upper_value, self._upper_value, self._upper)
+        if self._upper == other._upper and self._upper_value == other._upper_value:
+            return Interval(self._lower, self._lower_value, other._lower_value, self._opposite_boundary_type(other._lower))
         if other in self:
             return IntervalSet([
                 Interval(self._lower, self._lower_value, other.lower_value, self._opposite_boundary_type(other._lower)),
