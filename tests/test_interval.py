@@ -1,3 +1,4 @@
+from datetime import datetime
 import pytest
 from pyinter import interval as i
 from pyinter import IntervalSet
@@ -112,6 +113,15 @@ def test_subtract_exact_overlap():
     assert (left - right).empty()
 
 
+def test_subtract_empty_types():
+    left  = i.closed(datetime(2015, 1, 1), datetime(2020, 1, 1))
+    right = i.closed(datetime(2010, 1, 1), datetime(2100, 1, 1))
+    result = left - right
+    assert result.empty()
+    assert isinstance(result.lower_value, datetime)
+    assert isinstance(result.upper_value, datetime)
+
+
 def test_subtract_almost_complete_overlap():
     left = i.closed(1, 2)
     right = i.open(1, 5)
@@ -134,8 +144,7 @@ def test_subtract_empty_from_empty_is_empty():
 def test_subtract_complete_overlap_returns_an_empty_interval():
     left = i.closed(1, 2)
     right = i.closed(1, 2)
-    expected = i.open(0, 0)
-    assert left - right == expected
+    assert (left - right).empty()
 
 
 def test_complement_open():
