@@ -2,6 +2,11 @@ import pytest
 from pyinter import interval as i
 from pyinter import IntervalSet
 
+def test_interval_copy():
+    assert i.open(1, 4).copy() == i.open(1, 4)
+    assert i.openclosed(1, 4).copy() == i.openclosed(1, 4)
+    assert i.closedopen(1, 4).copy() == i.closedopen(1, 4)
+    assert i.closed(1, 4).copy() == i.closed(1, 4)
 
 def test_intersect_overlapping():
     one = i.open(3, 6)

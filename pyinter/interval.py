@@ -96,6 +96,9 @@ class Interval(object):
         self._upper_value = upper_value
         self._upper = upper
 
+    def copy(self):
+        return Interval(self._lower, self._lower_value, self._upper_value, self._upper)
+
     def __repr__(self):
         lower_string = '(' if self._lower == self.OPEN else '['
         upper_string = ')' if self._upper == self.OPEN else ']'
