@@ -199,18 +199,23 @@ class Interval(object):
             else:
                 new_upper = self._upper
         return new_lower, new_upper
-    
+
     def empty(self):
         return (self._lower_value >= self._upper_value and
                 self._lower == self.OPEN and
                 self._upper == self.OPEN)
 
     def overlaps(self, other):
-        """If self and other have any overlaping values returns True, otherwise returns False"""
-        if self.lower_value in other or self._upper_value in other or \
-                other.lower_value in self or other._upper_value in self or self == other:
-            return True
-        return False
+        """If self and other have any overlapping values returns True, otherwise returns False"""
+        if self > other:
+            smaller, larger = other, self
+        else:
+            smaller, larger = self, other
+        if larger.empty():
+            return False
+        if smaller._upper_value == larger._lower_value:
+            return smaller._upper == smaller.CLOSED and larger._lower == smaller.CLOSED
+        return larger._lower_value < smaller._upper_value
 
     def intersect(self, other):
         """Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval`
