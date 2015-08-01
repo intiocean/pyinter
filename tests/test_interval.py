@@ -3,11 +3,19 @@ import pytest
 from pyinter import interval as i
 from pyinter import IntervalSet
 
+
 def test_interval_copy():
     assert i.open(1, 4).copy() == i.open(1, 4)
     assert i.openclosed(1, 4).copy() == i.openclosed(1, 4)
     assert i.closedopen(1, 4).copy() == i.closedopen(1, 4)
     assert i.closed(1, 4).copy() == i.closed(1, 4)
+
+
+def test_interval_copy_returns_a_new_instance():
+    one = i.open(1, 4)
+    assert one is one
+    assert one is not one.copy()
+
 
 def test_intersect_overlapping():
     one = i.open(3, 6)
@@ -92,14 +100,14 @@ def test_subtract_overlapping():
 
 
 def test_subtract_overlapping_start():
-    left  = i.open(1, 10)
+    left = i.open(1, 10)
     right = i.open(1, 5)
     expected = i.closedopen(5, 10)
     assert left - right == expected
 
 
 def test_subtract_overlapping_end():
-    left  = i.open(1, 10)
+    left = i.open(1, 10)
     right = i.open(5, 10)
     expected = i.openclosed(1, 5)
     assert left - right == expected
@@ -119,7 +127,7 @@ def test_subtract_exact_overlap():
 
 
 def test_subtract_empty_types():
-    left  = i.closed(datetime(2015, 1, 1), datetime(2020, 1, 1))
+    left = i.closed(datetime(2015, 1, 1), datetime(2020, 1, 1))
     right = i.closed(datetime(2010, 1, 1), datetime(2100, 1, 1))
     result = left - right
     assert result.empty()
