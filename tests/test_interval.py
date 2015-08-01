@@ -17,6 +17,28 @@ def test_interval_copy_returns_a_new_instance():
     assert one is not one.copy()
 
 
+def test_overlaps():
+    assert i.open(1, 4).overlaps(i.open(3, 6))
+    assert i.open(3, 6).overlaps(i.open(1, 4))
+    assert i.openclosed(1, 4).overlaps(i.open(3, 6))
+
+
+def test_overlaps_touching():
+    assert not i.openclosed(1, 4).overlaps(i.openclosed(4, 5))
+    assert not i.closedopen(1, 4).overlaps(i.closedopen(4, 5))
+    assert not i.open(1, 4).overlaps(i.open(4, 5))
+    assert i.closed(1, 4).overlaps(i.closed(4, 5))
+
+
+def test_overlaps_empty():
+    assert not i.open(0, 0).overlaps(i.closed(1, 20))
+    assert not i.open(1, 1).overlaps(i.closed(1, 20))
+    assert not i.open(2, 2).overlaps(i.closed(1, 20))
+    assert not i.closed(1, 20).overlaps(i.open(0, 0))
+    assert not i.closed(1, 20).overlaps(i.open(1, 1))
+    assert not i.closed(1, 20).overlaps(i.open(2, 2))
+
+
 def test_intersect_overlapping():
     one = i.open(3, 6)
     two = i.open(4, 10)
