@@ -39,6 +39,17 @@ def test_overlaps_empty():
     assert not i.closed(1, 20).overlaps(i.open(2, 2))
 
 
+def test_overlaps_does_not_change_intervals():
+    one = i.open(3, 6)
+    two = i.open(1, 4)
+    assert one.overlaps(two)
+    assert one == i.open(3, 6)
+    assert two == i.open(1, 4)
+    assert two.overlaps(one)
+    assert one == i.open(3, 6)
+    assert two == i.open(1, 4)
+
+
 def test_intersect_overlapping():
     one = i.open(3, 6)
     two = i.open(4, 10)

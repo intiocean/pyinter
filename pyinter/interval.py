@@ -206,14 +206,16 @@ class Interval(object):
                 self._upper == self.OPEN)
 
     def overlaps(self, other):
-        """If self and other have any overlaping values returns True, otherwise returns False"""
+        """If self and other have any overlapping values returns True, otherwise returns False"""
         if self > other:
-            self, other = other, self
-        if other.empty():
+            smaller, larger = other, self
+        else:
+            smaller, larger = self, other
+        if larger.empty():
             return False
-        if self._upper_value == other._lower_value:
-            return self._upper == self.CLOSED and other._lower == self.CLOSED
-        return other._lower_value < self._upper_value
+        if smaller._upper_value == larger._lower_value:
+            return smaller._upper == smaller.CLOSED and larger._lower == smaller.CLOSED
+        return larger._lower_value < smaller._upper_value
 
     def intersect(self, other):
         """Returns a new :class:`~pyinter.Interval` representing the intersection of this :class:`~pyinter.Interval`
