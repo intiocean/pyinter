@@ -2,10 +2,11 @@
 
 Release History
 ---------------
-0.1.9 (TBD)
-+++++++++++
+0.1.9 (2015-08-01)
+++++++++++++++++++
 - Fix empty interval types so that empty intervals could be compared with other intervals
 - Add method `copy()` to create new `Interval` instances with the same bounds and values as the `Interval` being copied
+- Fix method `overlaps` on `Interval` and add tests for it!
 
 0.1.8 (2015-07-14)
 ++++++++++++++++++
