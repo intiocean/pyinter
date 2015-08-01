@@ -250,7 +250,7 @@ class Interval(object):
         if other.empty():
             return self
         if self in other:
-            return open(0, 0)
+            return open(self._lower_value, self._lower_value)
         if self._lower == other._lower and self._lower_value == other._lower_value:
             return Interval(self._opposite_boundary_type(other._upper), other._upper_value, self._upper_value, self._upper)
         if self._upper == other._upper and self._upper_value == other._upper_value:
