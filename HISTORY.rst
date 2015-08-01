@@ -2,6 +2,11 @@
 
 Release History
 ---------------
+0.1.9 (TBD)
++++++++++++
+- Fix empty interval types so that empty intervals could be compared with other intervals
+- Add method `copy()` to create new `Interval` instances with the same bounds and values as the `Interval` being copied
+
 0.1.8 (2015-07-14)
 ++++++++++++++++++
 - Fix formatting in README.rst as pypi isn't rendering it properly.
