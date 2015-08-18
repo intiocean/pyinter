@@ -84,6 +84,8 @@ class Interval(object):
 
     lower_value = property(fget=lambda self: self._lower_value, doc='This intervals lower value')
     upper_value = property(fget=lambda self: self._upper_value, doc='This intervals upper value')
+    lower = property(fget=lambda self: self._lower, doc='Whether lower is Interval.OPEN or Interval.CLOSED')
+    upper = property(fget=lambda self: self._upper, doc='Whether upper is Interval.OPEN or Interval.CLOSED')
 
     def __init__(self, lower, lower_value, upper_value, upper):
         """Create a new :class:`~pyinter.Interval` object, lower and upper should be one of
