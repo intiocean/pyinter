@@ -102,6 +102,20 @@ class Interval(object):
         """Returns a new :class:`~pyinter.Interval` object with the same bounds and values."""
         return Interval(self._lower, self._lower_value, self._upper_value, self._upper)
 
+    def replace(self, lower=None, lower_value=None, upper_value=None, upper=None):
+        interval = self.copy()
+
+        if lower is not None:
+            interval._lower = lower
+        if lower_value is not None:
+            interval._lower_value = lower_value
+        if upper_value is not None:
+            interval._upper_value = upper_value
+        if upper is not None:
+            interval._upper = upper
+
+        return interval
+
     def __repr__(self):
         lower_string = '(' if self._lower == self.OPEN else '['
         upper_string = ')' if self._upper == self.OPEN else ']'
