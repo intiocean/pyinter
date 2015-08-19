@@ -84,6 +84,8 @@ class Interval(object):
 
     lower_value = property(fget=lambda self: self._lower_value, doc='This intervals lower value')
     upper_value = property(fget=lambda self: self._upper_value, doc='This intervals upper value')
+    lower = property(fget=lambda self: self._lower, doc='Whether lower is Interval.OPEN or Interval.CLOSED')
+    upper = property(fget=lambda self: self._upper, doc='Whether upper is Interval.OPEN or Interval.CLOSED')
 
     def __init__(self, lower, lower_value, upper_value, upper):
         """Create a new :class:`~pyinter.Interval` object, lower and upper should be one of
@@ -99,6 +101,20 @@ class Interval(object):
     def copy(self):
         """Returns a new :class:`~pyinter.Interval` object with the same bounds and values."""
         return Interval(self._lower, self._lower_value, self._upper_value, self._upper)
+
+    def replace(self, lower=None, lower_value=None, upper_value=None, upper=None):
+        interval = self.copy()
+
+        if lower is not None:
+            interval._lower = lower
+        if lower_value is not None:
+            interval._lower_value = lower_value
+        if upper_value is not None:
+            interval._upper_value = upper_value
+        if upper is not None:
+            interval._upper = upper
+
+        return interval
 
     def __repr__(self):
         lower_string = '(' if self._lower == self.OPEN else '['
