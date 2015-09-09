@@ -185,9 +185,10 @@ def test_subtract_almost_complete_overlap():
 def test_empty():
     assert i.open(1, 1).empty()
     assert i.open(3, 3).empty()
+    assert i.openclosed(3, 3).empty()
+    assert i.closedopen(3, 3).empty()
     assert not i.open(3, 4).empty()
-    assert not i.openclosed(3, 3).empty()
-    assert not i.closedopen(3, 3).empty()
+    assert not i.openclosed(3, 4).empty()
 
 
 def test_subtract_empty_from_empty_is_empty():
@@ -224,9 +225,7 @@ def test_complement_empty():
 
 def test_complement_whole():
     whole = i.open(i.NEGATIVE_INFINITY, i.INFINITY)
-    (lower_interval, upper_interval) = sorted(whole.complement())  # an IntervalSet is not sorted
-    assert lower_interval == i.openclosed(i.NEGATIVE_INFINITY, i.NEGATIVE_INFINITY)
-    assert upper_interval == i.closedopen(i.INFINITY, i.INFINITY)
+    assert whole.complement().empty()
 
 
 def test_repr():
