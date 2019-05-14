@@ -2,6 +2,11 @@
 
 Release History
 ---------------
+0.2.0 (2019-05-14)
+++++++++++++++++++
+- Fix: The interval of 2 identical numbers equals the empty set if one of the boundaries is open #20
+- Improvement: Add lower and upper properties and replace method which works similarly to date.replace #19
+
 0.1.9 (2015-08-01)
 ++++++++++++++++++
 - Fix empty interval types so that empty intervals could be compared with other intervals
