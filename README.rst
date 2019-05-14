@@ -1,3 +1,9 @@
+Note: This library is no longer maintained
+------------------------------------------
+
+I recommend using the newer `python-intervals <https://github.com/AlexandreDecan/python-intervals>`_ library instead
+
+
 =======
 Pyinter
 =======
