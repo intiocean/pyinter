@@ -1,7 +1,7 @@
 Note: This library is no longer maintained
 ------------------------------------------
 
-I recommend using the newer `python-intervals <https://github.com/AlexandreDecan/python-intervals>`_ library instead
+I recommend using the newer `portion <https://github.com/AlexandreDecan/portion>`_ library instead
 
 
 =======
